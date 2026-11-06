@@ -119,7 +119,20 @@ export default defineConfig({
     }),
     vueJsx(),
     markdown(),
-    svgLoader(),
+    svgLoader({
+      svgoConfig: {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                convertPathData: false,
+              },
+            },
+          },
+        ],
+      },
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       // src/main.ts registers the worker itself, against the base the app resolved at

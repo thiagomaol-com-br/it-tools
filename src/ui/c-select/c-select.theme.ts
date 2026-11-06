@@ -20,13 +20,13 @@ export const { useTheme } = defineThemes({
   dark: {
     sizes,
 
-    backgroundColor: '#333333',
-    borderColor: '#333333',
-    dropdownShadow: 'rgba(0, 0, 0, 0.2) 0px 8px 24px',
+    backgroundColor: '#171717',
+    borderColor: '#262626',
+    dropdownShadow: 'rgba(0, 0, 0, 0.4) 0px 8px 24px',
 
     option: {
       hover: {
-        backgroundColor: '#444444',
+        backgroundColor: '#262626',
       },
       active: {
         textColor: appThemes.dark.primary.color,
@@ -34,7 +34,7 @@ export const { useTheme } = defineThemes({
     },
 
     focus: {
-      backgroundColor: '#1ea54c1a',
+      backgroundColor: '#F974151a',
     },
   },
   light: {

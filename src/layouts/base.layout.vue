@@ -6,6 +6,8 @@ import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
 import HeroGradient from '../assets/hero-gradient.svg?component';
+import BrandLogoDark from '@/brand/logo/logo-dark.svg?component';
+import BrandLogoLight from '@/brand/logo/logo-light.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
@@ -46,10 +48,13 @@ const tools = computed<ToolCategory[]>(() => [
       <RouterLink to="/" class="hero-wrapper">
         <HeroGradient class="gradient" />
         <div class="text-wrapper">
-          <div class="title">IT - TOOLS</div>
+          <div class="title">
+            <BrandLogoDark v-if="!styleStore.isSmallScreen || styleStore.isDarkTheme" class="brand-logo" />
+            <BrandLogoLight v-else class="brand-logo" />
+          </div>
           <div class="divider" />
           <div class="subtitle">
-            {{ $t('home.subtitle') }}
+            IT - TOOLS
           </div>
         </div>
       </RouterLink>
@@ -65,7 +70,7 @@ const tools = computed<ToolCategory[]>(() => [
           <div>
             IT-Tools
 
-            <c-link target="_blank" rel="noopener" :href="`https://github.com/sharevb/it-tools/tree/v${version}`">
+            <c-link target="_blank" rel="noopener" :href="`https://github.com/thiagomaol-com-br/it-tools`">
               v{{ version }}
             </c-link>
 
@@ -75,7 +80,7 @@ const tools = computed<ToolCategory[]>(() => [
                 target="_blank"
                 rel="noopener"
                 type="primary"
-                :href="`https://github.com/sharevb/it-tools/tree/${commitSha}`"
+                :href="`https://github.com/thiagomaol-com-br/it-tools/tree/${commitSha}`"
               >
                 {{ commitSha }}
               </c-link>
@@ -83,8 +88,8 @@ const tools = computed<ToolCategory[]>(() => [
           </div>
           <div>
             © {{ new Date().getFullYear() }}
-            <c-link target="_blank" rel="noopener" href="https://corentin.tech?utm_source=it-tools&utm_medium=footer">
-              Corentin Thomasset
+            <c-link target="_blank" rel="noopener" href="https://thiagomaol.com.br">
+              Thiago Maol
             </c-link>
           </div>
         </div>
@@ -242,6 +247,15 @@ const tools = computed<ToolCategory[]>(() => [
     .title {
       font-size: 25px;
       font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .brand-logo {
+        height: 32px;
+        width: auto;
+        max-width: 175px;
+      }
     }
 
     .divider {

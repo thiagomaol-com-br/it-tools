@@ -1,17 +1,23 @@
 import type { GlobalThemeOverrides } from 'naive-ui';
+import brandTokens from '@/brand/tokens.json';
 
 export const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
+    fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    primaryColor: brandTokens.families.primary['500'],
+    primaryColorHover: brandTokens.families.primary['400'],
+    primaryColorPressed: brandTokens.families.primary['600'],
+    primaryColorSuppl: brandTokens.families.primary['400'],
     // Keep <body> the same color as the Layout background: Safari 26+ ignores
     // theme-color and derives its browser chrome tint from the body background.
-    bodyColor: '#f1f5f9',
+    bodyColor: brandTokens.light.surface,
   },
 
   Menu: {
     itemHeight: '32px',
   },
 
-  Layout: { color: '#f1f5f9' },
+  Layout: { color: brandTokens.light.surface },
 
   AutoComplete: {
     peers: {
@@ -22,21 +28,22 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
 
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: '#1ea54cFF',
-    primaryColorHover: '#36AD6AFF',
-    primaryColorPressed: '#0C7A43FF',
-    primaryColorSuppl: '#36AD6AFF',
+    fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    primaryColor: brandTokens.families.primary['500'],
+    primaryColorHover: brandTokens.families.primary['400'],
+    primaryColorPressed: brandTokens.families.primary['600'],
+    primaryColorSuppl: brandTokens.families.primary['400'],
     // Match the Layout background (see lightThemeOverrides.common.bodyColor)
-    bodyColor: '#1c1c1c',
+    bodyColor: brandTokens.dark.background,
   },
 
   Notification: {
-    color: '#333333',
+    color: brandTokens.dark.surface,
   },
 
   AutoComplete: {
     peers: {
-      InternalSelectMenu: { height: '500px', color: '#1e1e1e' },
+      InternalSelectMenu: { height: '500px', color: brandTokens.dark.surface },
     },
   },
 
@@ -45,18 +52,18 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Layout: {
-    color: '#1c1c1c',
-    siderColor: '#232323',
-    siderBorderColor: 'transparent',
+    color: brandTokens.dark.background,
+    siderColor: brandTokens.dark.surface,
+    siderBorderColor: brandTokens.dark.border,
   },
 
   Card: {
-    color: '#232323',
-    borderColor: '#282828',
+    color: brandTokens.dark.surface,
+    borderColor: brandTokens.dark.border,
   },
 
   Table: {
-    tdColor: '#232323',
-    thColor: '#353535',
+    tdColor: brandTokens.dark.surface,
+    thColor: brandTokens.families.neutral['800'],
   },
 };

@@ -13,10 +13,10 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
       colorPressed: 'rgba(46, 51, 56, 0.22)',
     },
     primary: {
-      color: '#18a058',
-      colorHover: '#1ea54c',
-      colorPressed: '#0C7A43',
-      colorFaded: '#18a0582f',
+      color: '#F97415',
+      colorHover: '#FA8938',
+      colorPressed: '#CC5500',
+      colorFaded: '#F974152a',
     },
     warning: {
       color: '#f59e0b',
@@ -39,7 +39,7 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
     loading_background: '#f1f5f9',
   },
   dark: {
-    background: '#1e1e1e',
+    background: '#0A0A0A',
     text: {
       baseColor: '#ffffffd1',
       mutedColor: '#ffffff80',
@@ -50,10 +50,10 @@ export const { themes: appThemes, useTheme: useAppTheme } = defineThemes({
       colorPressed: 'rgba(255, 255, 255, 0.24)',
     },
     primary: {
-      color: '#1ea54c',
-      colorHover: '#36AD6A',
-      colorPressed: '#0C7A43',
-      colorFaded: '#18a0582f',
+      color: '#F97415',
+      colorHover: '#FA8938',
+      colorPressed: '#CC5500',
+      colorFaded: '#F974152a',
     },
     warning: {
       color: '#f59e0b',

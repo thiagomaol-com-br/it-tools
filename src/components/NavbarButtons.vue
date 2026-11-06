@@ -99,7 +99,7 @@ function closeMenuOnSmallScreen() {
     <c-button
       circle
       variant="text"
-      href="https://github.com/sharevb/it-tools"
+      href="https://github.com/thiagomaol-com-br/it-tools"
       target="_blank"
       rel="noopener noreferrer"
       :aria-label="$t('home.nav.githubRepository')"

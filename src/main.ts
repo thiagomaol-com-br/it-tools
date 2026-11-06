@@ -15,6 +15,7 @@ import Vue3Katex from 'vue3-katex';
 import 'katex/dist/katex.min.css';
 
 import 'virtual:uno.css';
+import '@/brand/fonts/fonts.css';
 
 import { naive } from './plugins/naive.plugin';
 
