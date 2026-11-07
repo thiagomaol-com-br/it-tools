@@ -127,6 +127,8 @@ export default defineConfig({
             params: {
               overrides: {
                 convertPathData: false,
+                removeViewBox: false,
+                cleanupIds: false,
               },
             },
           },
@@ -356,7 +358,13 @@ export default defineConfig({
   },
   server: {
     watch: {
-      ignored: ['**/.pnpm-store/**'],
+      ignored: [
+        '**/.pnpm-store/**',
+        '**/node_modules/**',
+        '**/.git/**',
+        '**/dist/**',
+        '**/pessoal/**',
+      ],
     },
     headers: {
       //   'Cross-Origin-Resource-Policy': 'same-site',

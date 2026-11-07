@@ -6,8 +6,7 @@ import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
 import HeroGradient from '../assets/hero-gradient.svg?component';
-import BrandLogoDark from '@/brand/logo/logo-dark.svg?component';
-import BrandLogoLight from '@/brand/logo/logo-light.svg?component';
+import BrandLogoGradient from '@/brand/logo/logo-gradient.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
@@ -49,12 +48,11 @@ const tools = computed<ToolCategory[]>(() => [
         <HeroGradient class="gradient" />
         <div class="text-wrapper">
           <div class="title">
-            <BrandLogoDark v-if="!styleStore.isSmallScreen || styleStore.isDarkTheme" class="brand-logo" />
-            <BrandLogoLight v-else class="brand-logo" />
+            <BrandLogoGradient class="brand-logo" />
           </div>
           <div class="divider" />
           <div class="subtitle">
-            IT - TOOLS
+            Ferramentas
           </div>
         </div>
       </RouterLink>
@@ -251,23 +249,29 @@ const tools = computed<ToolCategory[]>(() => [
       justify-content: center;
       align-items: center;
 
+      :deep(svg),
       .brand-logo {
-        height: 32px;
-        width: auto;
-        max-width: 175px;
+        width: 170px;
+        height: auto;
+        max-width: 80%;
+        display: block;
+        margin: 0 auto;
       }
     }
 
     .divider {
-      width: 50px;
+      width: 44px;
       height: 2px;
       border-radius: 4px;
-      background-color: v-bind('themeVars.primaryColor');
-      margin: 0 auto 5px;
+      background-color: rgba(249, 116, 21, 0.4);
+      margin: 8px auto 6px;
     }
 
     .subtitle {
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #E5E5E5;
+      letter-spacing: 0.5px;
     }
   }
 
@@ -291,6 +295,10 @@ const tools = computed<ToolCategory[]>(() => [
       position: static;
       padding-top: 0;
       color: v-bind('themeVars.textColor1');
+
+      .subtitle {
+        color: v-bind('themeVars.textColor1');
+      }
     }
   }
 }
