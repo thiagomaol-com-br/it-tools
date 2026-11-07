@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import Coffee from '~icons/tabler/coffee';
 import Home2 from '~icons/tabler/home-2';
-import Menu2 from '~icons/tabler/menu-2';
 import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
@@ -97,12 +96,13 @@ const tools = computed<ToolCategory[]>(() => [
     <template #content>
       <div ref="navbarRef" class="navbar" flex items-center justify-center gap-2>
         <c-button
-          circle
+          round
           variant="text"
+          font-semibold
           :aria-label="$t('home.toggleMenu')"
           @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
         >
-          <NIcon size="25" :component="Menu2" />
+          Menu
         </c-button>
 
         <c-tooltip :tooltip="$t('home.home')" position="bottom">

@@ -4,6 +4,27 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-07] Usabilidade e Acessibilidade: Descoberta de Catálogo e Suavização da Busca
+
+### 1. Contexto
+A aplicação será utilizada por pessoas não técnicas, para as quais o padrão de menu sanduíche isolado (ícone abstrato de 3 linhas) representa uma barreira de usabilidade e descoberta de conteúdo ("o que não é visto não existe"). Além disso, o estado de recolhimento da barra lateral persistia em `localStorage`, fazendo com que acessos futuros mantivessem o menu fechado permanentemente caso tivesse sido fechado em alguma ocasião. Na busca rápida (Ctrl+K), o estado de seleção/hover cobria as ferramentas com 100% de laranja saturado (`#F97415`), gerando ofuscamento visual no tema escuro.
+
+### 2. Decisão
+1. **Abertura Padrão da Barra Lateral:** Substituir o uso de `useITStorage` em `isMenuCollapsed` por `ref(isSmallScreen.value)` no [src/stores/style.store.ts](file:///mnt/dados/home/thiago/PROJETOS/ghub_org_thiagomaol-com-br/it-tools/src/stores/style.store.ts). No desktop (`> 700px`), a barra sempre inicia aberta em qualquer visita limpa ou recarregamento, mantendo o recolhimento inicial apenas em celulares (`<= 700px`).
+2. **Substituição do Ícone Abstrato por Rótulo Textual:** Em [src/layouts/base.layout.vue](file:///mnt/dados/home/thiago/PROJETOS/ghub_org_thiagomaol-com-br/it-tools/src/layouts/base.layout.vue), trocar o ícone de três linhas por um botão arredondado com o texto explícito "Menu" (`round variant="text" font-semibold`).
+3. **Atenuação do Destaque da Busca:** Em [src/modules/command-palette/components/command-palette-option.vue](file:///mnt/dados/home/thiago/PROJETOS/ghub_org_thiagomaol-com-br/it-tools/src/modules/command-palette/components/command-palette-option.vue), remover a classe `bg-primary` saturada e aplicar um fundo translúcido suave de cobre (`rgba(249, 116, 21, 0.2)` com borda sutil `rgba(249, 116, 21, 0.35)`).
+
+### 3. Justificativa (Por quê)
+* Eliminar a persistência de fechamento e exibir o catálogo aberto por padrão garante descoberta imediata das ferramentas para visitantes leigos.
+* Botões com rótulo textual ("Menu") têm taxa de compreensão e acionamento muito superior a ícones abstratos órfãos em testes com públicos não técnicos.
+* Em fundos escuros, realces com opacidade reduzida e bordas suaves oferecem legibilidade e foco sem causar fadiga ocular.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Aumento na facilidade de uso para perfis não técnicos; navegação acessível e agradável visualmente no tema escuro.
+* **Trade-offs:** Em telas de desktop, a preferência de um usuário que deseje manter a barra permanentemente fechada entre sessões não é salva no `localStorage`, reabrindo a cada nova visita à URL.
+
+---
+
 ## [2026-11-07] Customização do Cabeçalho: Degradê da Marca, Resolução de SVGs e Inotify Watchers
 
 ### 1. Contexto

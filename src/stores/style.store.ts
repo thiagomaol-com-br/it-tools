@@ -1,7 +1,6 @@
 import { useColorMode, useMediaQuery, usePreferredDark } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { type Ref, computed, watch } from 'vue';
-import { useITStorage } from '@/composable/queryParams';
+import { computed, ref, watch } from 'vue';
 import { darkThemeOverrides, lightThemeOverrides } from '@/themes';
 
 export const useStyleStore = defineStore('style', {
@@ -15,7 +14,7 @@ export const useStyleStore = defineStore('style', {
       themeMode.value = isDarkTheme.value ? 'light' : 'dark';
     };
     const isSmallScreen = useMediaQuery('(max-width: 700px)');
-    const isMenuCollapsed = useITStorage('isMenuCollapsed', isSmallScreen.value) as Ref<boolean>;
+    const isMenuCollapsed = ref(isSmallScreen.value);
 
     watch(isSmallScreen, (v) => (isMenuCollapsed.value = v));
 

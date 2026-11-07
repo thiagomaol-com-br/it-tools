@@ -16,10 +16,8 @@ const { selected } = toRefs(props);
   <div
     role="option"
     :aria-selected="selected"
-    :class="{
-      'text-white': selected,
-      'bg-primary': selected,
-    }"
+    class="palette-option"
+    :class="{ selected }"
     w-full
     flex
     cursor-pointer
@@ -27,9 +25,6 @@ const { selected } = toRefs(props);
     overflow-hidden
     rounded
     pa-3
-    transition
-    hover:bg-primary
-    hover:text-white
     @click="() => emit('activated', option)"
   >
     <component :is="option.icon" v-if="option.icon" mr-3 h-30px w-30px shrink-0 op-50 />
@@ -48,7 +43,18 @@ const { selected } = toRefs(props);
   </div>
 </template>
 
-<style lang="css" scoped>
+<style lang="less" scoped>
+.palette-option {
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &.selected,
+  &:hover {
+    background-color: rgba(249, 116, 21, 0.2);
+    border-color: rgba(249, 116, 21, 0.35);
+  }
+}
+
 .tool-privacy-icon {
   display: inline-block;
   height: 0.9em;
