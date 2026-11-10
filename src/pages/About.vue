@@ -12,7 +12,7 @@ const toolStore = useToolStore();
 const desc = t(
   'about.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it',
 );
-const title = t('about.text.about-it-tools');
+const title = `${t('about.title')} - Thiago Maol. | Ferramentas`;
 useHead({
   title,
   meta: [

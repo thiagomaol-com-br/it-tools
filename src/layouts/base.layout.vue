@@ -5,7 +5,8 @@ import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
 import HeroGradient from '../assets/hero-gradient.svg?component';
-import BrandLogoGradient from '@/brand/logo/logo-gradient.svg?component';
+import BrandLogoGradientDark from '@/brand/logo/logo-gradient-dark.svg?component';
+import BrandLogoGradientLight from '@/brand/logo/logo-gradient-light.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
@@ -47,7 +48,8 @@ const tools = computed<ToolCategory[]>(() => [
         <HeroGradient class="gradient" />
         <div class="text-wrapper">
           <div class="title">
-            <BrandLogoGradient class="brand-logo" />
+            <BrandLogoGradientDark v-if="styleStore.isDarkTheme" class="brand-logo" />
+            <BrandLogoGradientLight v-else class="brand-logo" />
           </div>
           <div class="divider" />
           <div class="subtitle">

@@ -4,6 +4,27 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-10] Identidade Visual e Metadados: Gradientes de Marca, Favicon Vetorial Adaptativo e Título Institucional
+
+### 1. Contexto
+O logotipo da marca no cabeçalho necessitava de alinhamento com a especificação visual do site institucional (`hub/site`), com gradientes a 135° específicos para cada modo: `#F97415` a `#FAC49E` no tema claro e `#F9771A` a `#FBA66A` no tema escuro. Adicionalmente, a aba do navegador ainda exibia o favicon e os títulos originais do projeto upstream ("IT Tools - Handy online tools for developers"), divergindo da identidade institucional.
+
+### 2. Decisão
+1. **Gradientes de Logotipo Específicos por Tema:** Criação de [logo-gradient-light.svg](src/brand/logo/logo-gradient-light.svg) e [logo-gradient-dark.svg](src/brand/logo/logo-gradient-dark.svg) com IDs de gradiente isolados (`brand-wordmark-gradient-light` e `brand-wordmark-gradient-dark`), e alternância dinâmica via `styleStore.isDarkTheme` em [src/layouts/base.layout.vue](src/layouts/base.layout.vue).
+2. **Favicon Vetorial Adaptativo:** Configuração de `<link rel="icon" type="image/svg+xml" href="favicon.svg" />` em [index.html](index.html), utilizando a capacidade do SVG de alternar traços via `@media (prefers-color-scheme: light)` e sincronização dos fallbacks estáticos oficiais ([favicon.ico](public/favicon.ico), [favicon-32x32.png](public/favicon-32x32.png), [favicon-16x16.png](public/favicon-16x16.png) e [apple-touch-icon.png](public/apple-touch-icon.png)).
+3. **Padronização do Título do Documento:** Definição de `"Thiago Maol. | Ferramentas"` em [index.html](index.html) e [src/pages/Home.page.vue](src/pages/Home.page.vue), com padronização dos sufixos de ferramentas internas em [src/layouts/tool.layout.vue](src/layouts/tool.layout.vue), [src/pages/About.vue](src/pages/About.vue) e [src/pages/404.page.vue](src/pages/404.page.vue).
+
+### 3. Justificativa (Por quê)
+* Gradientes e IDs vetoriais separados eliminam riscos de colisão no DOM e asseguram fidelidade cromática em ambos os temas.
+* O suporte nativo a SVG para favicon com CSS embutido permite que navegadores modernos adaptem a cor do ícone à barra do sistema operacional sem recarregamentos dinâmicos por JavaScript.
+* A atualização de metadados e títulos unifica a identidade do produto sob a marca Thiago Maol.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Identidade visual e metadados totalmente integrados à marca; favicons nítidos em qualquer escala e tema; títulos consistentes em toda a navegação.
+* **Trade-offs:** Clientes ou navegadores legados sem suporte a SVG em favicons utilizam os fallbacks PNG/ICO sincronizados.
+
+---
+
 ## [2026-11-07] Usabilidade e Acessibilidade: Descoberta de Catálogo e Suavização da Busca
 
 ### 1. Contexto
