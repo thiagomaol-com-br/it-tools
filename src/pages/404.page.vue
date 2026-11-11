@@ -3,7 +3,7 @@ import { useHead } from '@vueuse/head';
 
 const { t } = useI18n();
 
-useHead({ title: `${t('404.notFound')} - Thiago Maol. | Ferramentas` });
+useHead({ title: 'Thiago Maol. | Ferramentas' });
 </script>
 
 <template>

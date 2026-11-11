@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-11] UX e Roteamento: Inversão Home/Sobre, Seções Retráteis e Título Universal
+
+### 1. Contexto
+A ferramenta será integrada ao site institucional do autor e demandava uma apresentação inicial contextualizada para os visitantes, em vez de expor diretamente o catálogo massivo de cards. Além disso, caixas secundárias (como importação/exportação de favoritos e a tabela completa com centenas de linhas) ocupavam espaço excessivo e sobrecarregavam a renderização inicial. A aba do navegador também necessitava manter uniformidade absoluta sob o título institucional.
+
+### 2. Decisão
+1. **Inversão de Rotas Estruturais:** Mapeamento da rota raiz (`/`) para o componente de apresentação institucional ([src/pages/About.vue](src/pages/About.vue)) e da rota `/about` (acessível pelo botão "Sobre") para o catálogo completo de cards de ferramentas ([src/pages/Home.page.vue](src/pages/Home.page.vue)) no [src/router.ts](src/router.ts).
+2. **Caixas de Gestão Retráteis no Catálogo:** Remoção das caixas de favoritos e listagem da página inicial, migrando-as para o topo da tela de ferramentas. Unificação da importação e exportação em um único card retrátil responsivo ("Importar e Exportar Favoritos") e conversão da listagem integral em seção retrátil sob demanda ("Todas as ferramentas em tabela" com `v-if` condicional para montagem de nós apenas ao expandir).
+3. **Título Universal e Estático:** Padronização estrita do título `"Thiago Maol. | Ferramentas"` para todas as páginas, layouts e transições de rota via `router.afterEach`.
+
+### 3. Justificativa (Por quê)
+* Exibir primeiro o texto de contextualização alinha o ponto de entrada da ferramenta com o site principal do autor.
+* Agrupar e colapsar os favoritos e a listagem integral acelera o carregamento da página, poupa CPU e entrega uma hierarquia visual limpa.
+* A renderização condicional (`v-if`) da tabela impede a montagem simultânea de centenas de nós e links no DOM inicial.
+* A fixação universal do título na aba evita discrepâncias e variações indesejadas de marca durante a navegação.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Experiência inicial limpa e amigável; navegação otimizada no catálogo de ferramentas; ganhos de performance no host com montagem sob demanda da tabela.
+* **Trade-offs:** A URL raiz (`/`) não exibe diretamente a vitrine de cards, exigindo que o visitante utilize o menu lateral, a busca ou o botão "Sobre" para ver a grade geral.
+
+---
+
 ## [2026-11-11] Mapeamento Arquitetural: Integração Graphify e Governança de Recursos
 
 ### 1. Contexto

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { type ActiveLoader, useLoading } from 'vue-loading-overlay';
 import { layouts } from './layouts/index';
+import AboutPage from './pages/About.vue';
 import HomePage from './pages/Home.page.vue';
 import NotFound from './pages/404.page.vue';
 import { tools } from './tools';
@@ -41,12 +42,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomePage,
+      component: AboutPage,
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('./pages/About.vue'),
+      component: HomePage,
     },
     ...toolsRoutes,
     ...toolsRedirectRoutes,
@@ -80,6 +81,7 @@ router.beforeEach((to, from) => {
 });
 
 router.afterEach(() => {
+  document.title = 'Thiago Maol. | Ferramentas';
   if (loaderTimeoutId) {
     clearTimeout(loaderTimeoutId);
     loaderTimeoutId = null;
