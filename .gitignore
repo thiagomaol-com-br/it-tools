@@ -50,3 +50,7 @@ components.d.ts
 *.vsix
 *.tsbuildinfo
 stats.html
+
+# Graphify (mapeamento estatico - preserva apenas relatorio de auditoria)
+graphify-out/*
+!graphify-out/GRAPH_REPORT.md

@@ -16,6 +16,15 @@
 - Eliminar aberturas e encerramentos performáticos de chatbot, estruturas de contraste artificial ("não X, mas Y"), conclusões dramáticas isoladas de uma linha e travessões duplos reflexivos.
 - Links Markdown devem usar apenas texto simples nos colchetes (ex.: `[arquivo.ext](link)`), nunca aninhar acentos graves dentro dos colchetes.
 
+### 4. Base de Conhecimento e Mapeamento de Código (Graphify)
+O repositório dispõe de mapeamento de arquitetura estática via Graphify em `graphify-out/`:
+- **Consulta de dependências e arquitetura**: Antes de buscas amplas com `grep`, utilize `graphify query "<pergunta>"` para inspecionar relacionamentos de código com custo mínimo.
+- **Regras de contenção de recursos (Ambiente com 2 vCPUs)**:
+  - **Proibido rebuild completo sem necessidade**: Não execute `/graphify .` de forma autônoma.
+  - **Escopo restrito ao Núcleo da Arquitetura**: As centenas de ferramentas isoladas em `src/tools/*/` são excluídas pelo `.graphifyignore` para evitar sobrecarga de CPU e congelamento do host.
+  - **Atualizações pontuais**: Use apenas `graphify update .` para sincronização incremental rápida.
+  - **Versionamento de artefatos**: O diretório `graphify-out/` é mantido fora do Git pelo `.gitignore`; apenas o relatório [GRAPH_REPORT.md](file:///mnt/dados/home/thiago/PROJETOS/ghub_org_thiagomaol-com-br/it-tools/graphify-out/GRAPH_REPORT.md) pode ser versionado como documentação de auditoria.
+
 ---
 
 ## Restrição Crítica de Hardware e Execução (Host com 2 CPUs)

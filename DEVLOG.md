@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-11] Mapeamento Arquitetural: Integração Graphify e Governança de Recursos
+
+### 1. Contexto
+Com centenas de ferramentas e dependências, a análise de arquitetura e busca de relações de dependência por buscas genéricas consumia ciclos de CPU no host restrito a 2 vCPUs. Era necessária uma base estática de conhecimento para inspecionar a arquitetura com custo mínimo, sem sobrecarregar a máquina nem inflar o controle de versão.
+
+### 2. Decisão
+1. **Mapeamento Estático via Graphify:** Integração de grafo de arquitetura com relatório de auditoria estrutural em [graphify-out/GRAPH_REPORT.md](graphify-out/GRAPH_REPORT.md).
+2. **Contenção de Recursos no `.graphifyignore`:** Exclusão de `src/tools/*/`, `locales/`, `dist/` e pastas auxiliares, mantendo o escopo estritamente no núcleo da arquitetura.
+3. **Diretrizes Operacionais no [AGENTS.md](AGENTS.md):** Proibição de reconstrução completa autônoma, recomendação de `graphify query` para consultas e restrição a sincronizações incrementais pontuais (`graphify update .`).
+4. **Governança de Versionamento no `.gitignore`:** Ignorar todos os dados dinâmicos e caches de `graphify-out/`, mantendo rastreado apenas o relatório Markdown de auditoria.
+
+### 3. Justificativa (Por quê)
+* Consultas direcionadas ao grafo evitam varreduras recursivas repetitivas no sistema de arquivos.
+* O isolamento do núcleo da aplicação poupa CPU e memória, prevenindo congelamentos do host.
+* Rastrear apenas o relatório Markdown documenta as relações do sistema sem commitar dumps volumosos de grafos JSON.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Mapeamento arquitetural de alta fidelidade sem custo operacional contínuo; proteção do hardware de 2 vCPUs.
+* **Trade-offs:** As ferramentas isoladas em `src/tools/*/` não fazem parte do grafo central.
+
+---
+
 ## [2026-11-10] Identidade Visual e Metadados: Gradientes de Marca, Favicon Vetorial Adaptativo e Título Institucional
 
 ### 1. Contexto

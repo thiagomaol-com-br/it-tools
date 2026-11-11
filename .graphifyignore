@@ -1,0 +1,14 @@
+# Arquivos de traducao pesados (dezenas de JSONs extensos)
+locales/
+
+# Arquivos estaticos e assets
+public/
+
+# Builds, Docker e dependencias
+dist/
+node_modules/
+docker-*/
+pessoal/
+
+# Escopo da Arquitetura Central (ignora as centenas de implementacoes de ferramentas individuais)
+src/tools/*/
