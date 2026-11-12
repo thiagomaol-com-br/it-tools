@@ -1,50 +1,48 @@
 # Sobre esta Central de Ferramentas
 
-Esta central reúne utilitários essenciais para o dia a dia e está ativa publicamente no meu servidor. Mais do que um canivete suíço para uso imediato, ela funciona como uma **demonstração prática** do que soluções de código aberto bem configuradas e mantidas podem entregar para a sua operação: agilidade, segurança e zero ruído.
+Esta central reúne utilitários essenciais para o dia a dia e roda publicamente no meu servidor. Ela é uma demonstração prática de como ferramentas de código aberto bem configuradas trazem agilidade para a rotina e mantêm a privacidade da sua empresa sob controle.
 
 ---
 
-## O Problema: Custos Inflados e Dados Espalhados
+## O Problema: Custos Inflados e Dados Expostos
 
-No dia a dia, a maioria das empresas enfrenta dois extremos comuns:
+No dia a dia, muitas empresas enfrentam dois extremos comuns:
 
-1. **Assinaturas recorrentes inflacionadas:** dezenas de ferramentas contratadas em dólares, cobradas por usuário, das quais a equipe utiliza apenas uma fração dos recursos. Conforme o time cresce, a conta explode.
-2. **Vazamento silencioso de informações:** colaboradores usando conversores e utilitários públicos gratuitos na internet para formatar dados sensíveis, contratos ou códigos da empresa, expondo informações estratégicas em plataformas desconhecidas.
+1. **Assinaturas recorrentes em dólares:** ferramentas contratadas por usuário, das quais a equipe utiliza apenas uma fração dos recursos. Conforme o time cresce, a fatura mensal se torna desproporcional.
+2. **Vazamento silencioso de informações:** colaboradores usando conversores e utilitários públicos gratuitos na internet para formatar dados de clientes, planilhas internas ou códigos, expondo informações estratégicas em servidores desconhecidos.
 
-Existe um vasto ecossistema de ferramentas de código aberto de altíssimo nível prontas para substituir essas assinaturas e proteger a privacidade do negócio. O obstáculo costuma ser a falta de tempo ou de um especialista para instalar, proteger e manter esses sistemas no ar.
-
----
-
-## O Que Eu Faço: Implementação e Gestão de Ferramentas Abertas
-
-Eu ajudo empresas a escolherem, implantarem e manterem ferramentas de código aberto sob medida para as suas operações, sem complicação:
-
-* **Avaliação Pragmática:** analiso a rotina do seu negócio para identificar gargalos reais. Se uma solução aberta resolver o problema com simplicidade e maturidade, eu indico o caminho. Se não fizer sentido para o seu momento, eu digo com a mesma transparência.
-* **Instalação e Segurança:** configuro a ferramenta no seu domínio institucional, com certificados de segurança, controle de acesso e isolamento de ambiente.
-* **Sustentação Técnica Contínua:** cuido das atualizações, estabilidade, backups e manutenção do servidor. A sua equipe usa a solução com tranquilidade, sem precisar se preocupar com comandos de terminal ou falhas de infraestrutura.
-* **Titularidade Irrestrita dos Seus Dados:** as informações, clientes e arquivos do seu negócio são 100% seus. Nada fica retido ou condicionado à minha gestão técnica.
+Existe um ecossistema maduro de ferramentas de código aberto prontas para substituir essas assinaturas e proteger a privacidade da operação. O obstáculo costuma ser a falta de tempo ou de braço técnico especializado para instalar, proteger e manter esses sistemas funcionando com segurança.
 
 ---
 
-## Quer Levar Essa Autonomia para a Sua Operação?
+## O Que Eu Faço: Implementação e Gestão Técnica
 
-Se a sua empresa precisa de uma ferramenta específica (gestão de chamados, automação, documentação interna, assinatura de documentos, utilitários locais) ou quer avaliar como reduzir custos com assinaturas de software:
+Eu ajudo empresas a escolherem, implantarem e manterem ferramentas de código aberto sob medida para as suas operações:
 
-**Vamos conversar diretamente:**
-* Se quiser tirar uma dúvida rápida, me envie uma mensagem direta.
-* Se preferir alinhar de forma ágil, podemos fazer uma **chamada rápida de voz**.
-* Se você quiser me mostrar a tela e os gargalos do seu fluxo atual, combinamos uma **videoconferência**.
+* **Avaliação Pragmática:** analiso a rotina do seu negócio para identificar gargalos reais. Se uma solução aberta resolver a demanda com simplicidade, eu indico o caminho. Se não fizer sentido para o seu momento, informo com a mesma transparência.
+* **Instalação e Segurança:** configuro a ferramenta com domínio institucional, certificados de segurança, controle de acesso e isolamento completo de ambiente.
+* **Sustentação Técnica Contínua:** assumo as atualizações, rotinas de backup, estabilidade e monitoramento do servidor. A sua equipe utiliza a solução com tranquilidade, sem precisar lidar com comandos de terminal ou manutenção de infraestrutura.
+* **Titularidade dos Seus Dados:** as informações, cadastros e arquivos do seu negócio são integralmente seus. Eles permanecem sob seu controle, enquanto a infraestrutura opera sob a minha gestão técnica.
 
-👉 **[Fale comigo no WhatsApp](https://wa.me/SEU_NUMERO)** ou envie um e-mail para **contato@thiagomaol.com.br**.  
-Conheça mais sobre a minha atuação em **[thiagomaol.com.br](https://thiagomaol.com.br)**.
+---
+
+## Quer Levar Essa Tranquilidade para a Sua Operação?
+
+Se a sua empresa precisa de uma ferramenta sob medida (gestão de chamados, documentação interna, automações, assinatura digital, utilitários locais) ou quer avaliar como enxugar custos com assinaturas recorrentes em dólares:
+
+1. **Envie a sua demanda por escrito:** você pode detalhar o que precisa diretamente pela página de [Solicitar Solução](https://thiagomaol.com.br/solicitar-solucao/) no meu site ou me mandar um e-mail em **thiagomaol@gmail.com**.
+2. **Avaliação técnica sem custo:** analiso o cenário com calma e retorno em até 24 horas úteis com uma avaliação franca sobre viabilidade.
+3. **Alinhamento prático:** se precisarmos detalhar o fluxo ou ver a sua tela, combinamos uma chamada rápida de voz ou uma videoconferência objetiva.
+
+Conheça mais sobre a minha atuação e solicite uma avaliação em **[thiagomaol.com.br](https://thiagomaol.com.br)**.
 
 ---
 
 ## Créditos e Código Aberto
 
-A transparência técnica é a base deste projeto. Esta plataforma é baseada no excelente trabalho da comunidade de código aberto:
+A transparência técnica é a base deste projeto. Esta plataforma é construída sobre o trabalho da comunidade de software livre:
 
-* **Projeto original:** criado com dedicação por [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about).
+* **Projeto original:** criado por [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about).
 * **Extensões e recursos adicionais:** desenvolvidos por [ShareVB](https://github.com/sharevb/it-tools).
-* **Licença:** disponibilizado sob licença livre [GNU General Public License v3.0 (GPL-3.0)](https://github.com/thiagomaol-com-br/it-tools/blob/main/LICENSE).
+* **Licença:** disponibilizado sob a licença [GNU General Public License v3.0 (GPL-3.0)](https://github.com/thiagomaol-com-br/it-tools/blob/main/LICENSE).
 * **Código desta versão:** customizado para a identidade visual de Thiago Maol, com código-fonte mantido no [GitHub](https://github.com/thiagomaol-com-br/it-tools).
