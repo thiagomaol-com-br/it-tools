@@ -1,40 +1,122 @@
-# About this Tools Hub
+# Tools Hub
 
-This hub brings together essential everyday utilities and runs publicly on my server. It serves as a practical demonstration of how well-configured open-source tools streamline operations while keeping your company's data privacy under control.
+Essential everyday utilities running publicly on my server. This platform serves as a practical demonstration of how well-configured open-source tools deliver agility for daily routines while keeping your company's data privacy strictly under control.
+
+> **How to use this hub:**  
+> • <kbd>☰ Menu</kbd> — Open the sidebar category tools list.  
+> • <kbd>⊞ Ferramentas</kbd> — Browse the full catalog of 474 tools and descriptions.  
+> • <kbd>🔍 Pesquisar</kbd> — Search directly for what you need (e.g. `text`, `password`, `json`, `qr code`).
 
 ---
 
 ## The Problem: Inflated Costs and Exposed Data
 
-In everyday business, many companies face two common extremes:
+In everyday operations, many businesses face two common extremes:
 
-1. **Recurring subscriptions in dollars:** tools billed per user, of which the team only uses a fraction of the features. As the team grows, the monthly invoice becomes disproportionate.
-2. **Silent information leaks:** employees using free public online converters and utilities to format customer data, internal spreadsheets, or code, exposing strategic information on unknown servers.
-
-A mature ecosystem of open-source tools exists, ready to replace these subscriptions and protect operational privacy. The primary hurdle is typically a lack of time or specialized technical bandwidth to install, secure, and maintain these systems reliably.
+<ul class="icon-list">
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--danger" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Recurring subscriptions in dollars:</strong> tools billed per user, of which the team only utilizes a fraction of the features. As the team expands, the monthly invoice becomes disproportionate.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--danger" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Silent data leaks:</strong> team members using free third-party public web utilities to format client data, spreadsheets, or source code, exposing strategic information on unknown servers.
+    </div>
+  </li>
+</ul>
 
 ---
 
 ## What I Do: Technical Implementation and Management
 
-I help businesses select, deploy, and maintain open-source tools tailored to their operations:
+A mature open-source ecosystem is ready to replace these expensive subscriptions and safeguard your operations. The bottleneck is usually a lack of time or specialized technical bandwidth to install, secure, and maintain everything reliably.
 
-* **Pragmatic Assessment:** I analyze your business workflow to identify real bottlenecks. If an open-source solution solves the demand simply, I point the way. If it doesn't make sense for your current stage, I inform you with the same transparency.
-* **Installation and Security:** I configure the tool under your corporate domain, with security certificates, access control, and complete environment isolation.
-* **Continuous Technical Support:** I handle updates, backup routines, stability, and server monitoring. Your team uses the solution with peace of mind, without having to deal with terminal commands or infrastructure maintenance.
-* **Full Ownership of Your Data:** Your business data, records, and files are 100% yours. They remain under your control, while the infrastructure runs under my technical management.
+I help companies select, deploy, and maintain these solutions tailored to their needs:
+
+<ul class="icon-list">
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--success" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Pragmatic Assessment:</strong> I analyze your routine to pinpoint real bottlenecks. If an open-source tool solves the requirement with simplicity, I point the way. If it doesn't make sense, I tell you with equal transparency.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--success" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Deployment and Security:</strong> I configure the system under your corporate domain, complete with security certificates, access control, and full environment isolation.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--success" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Continuous Support:</strong> I take charge of updates, backup routines, stability, and server monitoring. Your team uses the tools without worrying about terminal commands or server maintenance.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--success" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </span>
+    <div class="icon-list-content">
+      <strong>Data Ownership:</strong> your company's data, records, and files are 100% yours. They remain strictly under your control, while the infrastructure runs under my technical management.
+    </div>
+  </li>
+</ul>
 
 ---
 
 ## Want to Bring this Peace of Mind to Your Operation?
 
-If your company needs a tailored tool (ticketing, internal documentation, automation, digital signatures, local utilities) or wants to evaluate how to trim recurring subscription costs in dollars:
+If you need a specific system (ticketing, internal documentation, automation, digital signatures, local utilities) or want to evaluate how to trim software expenses:
 
-1. **Submit your requirements in writing:** you can detail your needs directly on the [Request a Solution](https://thiagomaol.com.br/solicitar-solucao/) page on my website or email me at **thiagomaol@gmail.com**.
-2. **Complimentary technical evaluation:** I carefully review your scenario and reply within 24 business hours with a straightforward assessment of feasibility.
-3. **Practical alignment:** if we need to review workflows or look at your screen together, we schedule a brief voice call or an objective video conference.
+<ul class="icon-list">
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--step" aria-hidden="true">1</span>
+    <div class="icon-list-content">
+      <strong>Send your requirements in writing:</strong> detail what you need on the [Request a Solution ↗](https://thiagomaol.com.br/solicitar-solucao/) page on my website or email me at **thiagomaol@gmail.com**.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--step" aria-hidden="true">2</span>
+    <div class="icon-list-content">
+      <strong>Complimentary technical evaluation:</strong> I carefully analyze your scenario and respond within 24 business hours with an honest assessment of feasibility.
+    </div>
+  </li>
+  <li class="icon-list-item">
+    <span class="icon-badge icon-badge--step" aria-hidden="true">3</span>
+    <div class="icon-list-content">
+      <strong>Practical alignment:</strong> if we need to discuss workflows or review your screen, we schedule a quick voice call or a focused video conference.
+    </div>
+  </li>
+</ul>
 
-Learn more about my work and request an evaluation at **[thiagomaol.com.br](https://thiagomaol.com.br)**.
+Learn more about my work at [**thiagomaol.com.br ↗**](https://thiagomaol.com.br).
 
 ---
 

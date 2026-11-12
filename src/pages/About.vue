@@ -70,5 +70,83 @@ useHead({
 </script>
 
 <template>
-  <c-markdown :markdown="activeContent" mx-auto mt-50px />
+  <div class="about-page">
+    <c-markdown :markdown="activeContent" mx-auto mt-50px />
+  </div>
 </template>
+
+<style scoped lang="less">
+.about-page {
+  :deep(.icon-list) {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+
+  :deep(.icon-list-item) {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  :deep(.icon-badge) {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.15rem;
+    box-sizing: border-box;
+  }
+
+  :deep(.icon-badge--danger) {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #ef4444;
+  }
+
+  :deep(.icon-badge--success) {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #10b981;
+  }
+
+  :deep(.icon-badge--step) {
+    background: rgba(249, 116, 21, 0.12);
+    border: 1px solid rgba(249, 116, 21, 0.4);
+    color: #f97415;
+    font-family: monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  :deep(.icon-list-content) {
+    flex: 1;
+    line-height: 1.6;
+  }
+
+  :deep(kbd) {
+    background: rgba(125, 125, 125, 0.12);
+    border: 1px solid rgba(125, 125, 125, 0.25);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 0.85em;
+    font-family: inherit;
+    font-weight: 600;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  }
+
+  :deep(blockquote) {
+    background: rgba(249, 116, 21, 0.06);
+    border-left: 3px solid #f97415;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+  }
+}
+</style>
