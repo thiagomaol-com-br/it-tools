@@ -23,4 +23,10 @@
   --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-interface: "Inter", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, monospace;
+
+  /* Solarpunk Âmbar - Design System 1.0 */
+  --color-amber: #F59E0B;
+  --color-amber-glass: hsla(38, 92%, 50%, 0.14);
+  --color-amber-border: hsla(38, 92%, 50%, 0.45);
+  --color-amber-shadow: 0 12px 40px 0 hsla(38, 92%, 50%, 0.25);
 }

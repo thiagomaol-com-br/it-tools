@@ -10,14 +10,23 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
     primaryColorSuppl: brandTokens.families.primary['400'],
     // Keep <body> the same color as the Layout background: Safari 26+ ignores
     // theme-color and derives its browser chrome tint from the body background.
-    bodyColor: brandTokens.light.surface,
+    bodyColor: '#F8FAFC',
   },
 
   Menu: {
     itemHeight: '32px',
   },
 
-  Layout: { color: brandTokens.light.surface },
+  Layout: {
+    color: '#F8FAFC',
+    siderColor: '#FFFFFF',
+    siderBorderColor: 'rgba(0, 0, 0, 0.08)',
+  },
+
+  Card: {
+    color: '#FFFFFF',
+    borderColor: 'rgba(0, 0, 0, 0.08)',
+  },
 
   AutoComplete: {
     peers: {
@@ -34,7 +43,7 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
     primaryColorPressed: brandTokens.families.primary['600'],
     primaryColorSuppl: brandTokens.families.primary['400'],
     // Match the Layout background (see lightThemeOverrides.common.bodyColor)
-    bodyColor: brandTokens.dark.background,
+    bodyColor: '#0A0A0A',
   },
 
   Notification: {
@@ -52,18 +61,18 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Layout: {
-    color: brandTokens.dark.background,
-    siderColor: brandTokens.dark.surface,
-    siderBorderColor: brandTokens.dark.border,
+    color: '#0A0A0A',
+    siderColor: '#171717',
+    siderBorderColor: 'rgba(255, 255, 255, 0.08)',
   },
 
   Card: {
-    color: brandTokens.dark.surface,
-    borderColor: brandTokens.dark.border,
+    color: 'rgba(255, 255, 255, 0.05)',
+    borderColor: 'rgba(255, 255, 255, 0.08)',
   },
 
   Table: {
-    tdColor: brandTokens.dark.surface,
-    thColor: brandTokens.families.neutral['800'],
+    tdColor: 'rgba(255, 255, 255, 0.04)',
+    thColor: 'rgba(255, 255, 255, 0.08)',
   },
 };

@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-12] Design System: Superfícies Translúcidas, Canvas Neutro e Camada Aurora Glow
+
+### 1. Contexto
+A interface visual do IT-Tools ainda operava com resíduos de cinzas opacos herdados do projeto original (fundo pré-boot em `#1c1c1c`, cards sólidos em `#232323` e ausência do halo térmico difuso característico da identidade de Thiago Maol). Era necessário aplicar as diretrizes da seção 1.2 do UI Playbook para integrar a atmosfera visual ao ecossistema institucional.
+
+### 2. Decisão
+1. **Camada Aurora Glow no Topo ([src/layouts/base.layout.vue](src/layouts/base.layout.vue)):** Inclusão de elemento fixo difuso no topo da página (`pointer-events: none; z-index: 0; filter: blur(60px)`), com opacidade contida de 12% no tema escuro e 5% no tema claro, adaptada com blur de 40px no mobile para não sobrecarregar telas pequenas.
+2. **Harmonização do Canvas de Boot ([index.html](index.html), [src/themes.ts](src/themes.ts) e [src/stores/style.store.ts](src/stores/style.store.ts)):** Atualização dos fundos pré-renderização e do `theme-color` para `#0A0A0A` no Dark e `#F8FAFC` no Light, eliminando o piscar cinza durante a carga inicial da SPA.
+3. **Superfície Translúcida de Vidro nos Cards ([src/ui/c-card/c-card.theme.ts](src/ui/c-card/c-card.theme.ts), [src/ui/c-card/c-card.vue](src/ui/c-card/c-card.vue) e [src/themes.ts](src/themes.ts)):** Substituição dos fundos cinzas opacos por `rgba(255, 255, 255, 0.05)`, bordas em `rgba(255, 255, 255, 0.08)`, cantos arredondados de 8px e sombras limpas de repouso (`0 8px 32px 0 rgba(0, 0, 0, 0.37)`).
+4. **Tokens Solarpunk Âmbar ([src/brand/fonts/fonts.css](src/brand/fonts/fonts.css) e [unocss.config.ts](unocss.config.ts)):** Mapeamento global de `--color-amber`, glass, border e shadow no CSS e no UnoCSS.
+
+### 3. Justificativa (Por quê)
+* O halo Aurora Glow no topo traz calor térmico sutil sem violar a regra de manter 85% a 90% do canvas neutro.
+* Cards translúcidos com bordas finas integram o catálogo de ferramentas ao fundo da página, conferindo leveza e modernidade à navegação.
+* Unificar os códigos hexadecimais de boot com os temas do Naive UI elimina piscamentos perceptíveis no recarregamento.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Atmosfera estética elegante e coesa com o site institucional; renderização fluida e translúcida dos cards sem afetar contraste WCAG AA.
+* **Trade-offs:** Em dispositivos extremamente antigos com GPUs legadas, o filtro `blur(60px)` pode exigir ligeiramente mais composição gráfica, mitigado pelo posicionamento estático e redução para `blur(40px)` em telas móveis.
+
+---
+
 ## [2026-11-12] Design System: Alinhamento Tipográfico com UI Playbook e Escalas Fluidas
 
 ### 1. Contexto

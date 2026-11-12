@@ -191,7 +191,10 @@ const solutionButtonMobileLabel = computed(() => {
       <!-- Positioned wrapper so the route-change loading overlay (see router.ts)
            can cover just the page, leaving the nav bar and menu visible. -->
       <div class="page-content">
-        <slot />
+        <div class="aurora-glow" aria-hidden="true" />
+        <div class="page-inner">
+          <slot />
+        </div>
       </div>
     </template>
   </MenuLayout>
@@ -257,6 +260,49 @@ const solutionButtonMobileLabel = computed(() => {
 
 .page-content {
   position: relative;
+  min-height: calc(100vh - 120px);
+}
+
+.page-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.aurora-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80rem;
+  height: 40rem;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+
+  // Dark mode Aurora Glow
+  background: radial-gradient(
+    ellipse at center,
+    hsla(25, 95%, 53%, 0.12) 0%,
+    hsla(50, 95%, 50%, 0.06) 40%,
+    transparent 70%
+  );
+
+  @media (max-width: 700px) {
+    top: -10%;
+    width: 32rem;
+    height: 22rem;
+    filter: blur(40px);
+    opacity: 0.8;
+  }
+}
+
+:global(html:not(.dark)) .aurora-glow {
+  background: radial-gradient(
+    ellipse at center,
+    hsla(25, 95%, 53%, 0.05) 0%,
+    hsla(50, 95%, 50%, 0.02) 40%,
+    transparent 70%
+  );
 }
 
 // Mobile: the top bar stays visible while scrolling, and the full-width menu

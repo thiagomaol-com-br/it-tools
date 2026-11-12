@@ -23,7 +23,8 @@ const theme = useTheme();
 .c-card {
   background-color: v-bind('theme.backgroundColor');
   border: 1px solid v-bind('theme.borderColor');
-  border-radius: 4px;
+  box-shadow: v-bind('theme.boxShadow');
+  border-radius: 8px;
   padding: 20px 24px;
 
   &-title {

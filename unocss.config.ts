@@ -17,6 +17,11 @@ export default defineConfig({
   theme: {
     colors: {
       primary: '#F97415',
+      amber: {
+        DEFAULT: '#F59E0B',
+        glass: 'hsla(38, 92%, 50%, 0.14)',
+        border: 'hsla(38, 92%, 50%, 0.45)',
+      },
     },
     fontFamily: {
       sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
