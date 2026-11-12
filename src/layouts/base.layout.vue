@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import Coffee from '~icons/tabler/coffee';
 import Home2 from '~icons/tabler/home-2';
 import Menu2 from '~icons/tabler/menu-2';
 import LayoutGrid from '~icons/tabler/layout-grid';
@@ -41,6 +40,23 @@ const tools = computed<ToolCategory[]>(() => [
     : []),
   ...toolsByCategory.value,
 ]);
+
+const solutionButtonLabel = computed(() => {
+  if (locale.value === 'pt') {
+    return 'Solicitar Solução ↗';
+  }
+  if (locale.value === 'es') {
+    return 'Solicitar Solución ↗';
+  }
+  return 'Request a Solution ↗';
+});
+
+const solutionButtonMobileLabel = computed(() => {
+  if (locale.value === 'pt' || locale.value === 'es') {
+    return 'Solicitar ↗';
+  }
+  return 'Request ↗';
+});
 </script>
 
 <template>
@@ -146,17 +162,18 @@ const tools = computed<ToolCategory[]>(() => [
           <NavbarButtons v-if="!styleStore.isSmallScreen" />
         </div>
 
-        <c-tooltip position="bottom" :tooltip="$t('home.support')">
+        <c-tooltip position="bottom" :tooltip="solutionButtonLabel">
           <c-button
             round
-            href="https://www.buymeacoffee.com/sharevb"
-            rel="noopener"
+            href="https://thiagomaol.com.br/solicitar-solucao/"
+            rel="noopener noreferrer"
             target="_blank"
-            class="support-button"
+            class="solution-button"
             :bordered="false"
+            :aria-label="solutionButtonLabel"
           >
-            <span v-if="!styleStore.isSmallScreen" mr-2>{{ $t('home.buyMeACoffee') }}</span>
-            <NIcon :component="Coffee" />
+            <span v-if="!styleStore.isSmallScreen">{{ solutionButtonLabel }}</span>
+            <span v-else>{{ solutionButtonMobileLabel }}</span>
           </c-button>
         </c-tooltip>
       </div>
@@ -181,16 +198,26 @@ const tools = computed<ToolCategory[]>(() => [
 //     background-size: @size @size;
 // }
 
-.support-button {
-  background: rgb(37, 99, 108);
-  background: linear-gradient(48deg, rgba(37, 99, 108, 1) 0%, rgba(59, 149, 111, 1) 60%, rgba(20, 160, 88, 1) 100%);
-  color: #fff !important;
-  transition: padding ease 0.2s !important;
+.solution-button {
+  background-color: #f97415 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid #f97415;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(249, 116, 21, 0.25);
 
   &:hover {
-    color: #fff;
-    padding-left: 30px;
-    padding-right: 30px;
+    background-color: #ea580c !important;
+    border-color: #ea580c !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(249, 116, 21, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(249, 116, 21, 0.3);
   }
 }
 
