@@ -108,18 +108,41 @@ function activateOption(option: PaletteOption) {
     }
   }
 }
+
+const searchPlaceholder = computed(() => {
+  if (locale.value === 'pt') {
+    return 'Buscar ferramenta... (ex: texto, senha, json)';
+  }
+  if (locale.value === 'es') {
+    return 'Buscar herramienta... (ej: texto, contraseña, json)';
+  }
+  return 'Search tool... (e.g. text, password, json)';
+});
+
+const searchButtonAriaLabel = computed(() => {
+  const shortcut = isMac.value ? 'Cmd + K' : 'Ctrl + K';
+  if (locale.value === 'pt') {
+    return `Buscar ferramenta... (ex: texto, senha, json) - Atalho: ${shortcut}`;
+  }
+  if (locale.value === 'es') {
+    return `Buscar herramienta... (ej: texto, contraseña, json) - Atajo: ${shortcut}`;
+  }
+  return `Search tool... (e.g. text, password, json) - Shortcut: ${shortcut}`;
+});
 </script>
 
 <template>
   <div flex-1>
-    <c-button w-full important:justify-start @click="isModalOpen = true">
-      <span flex items-center gap-3 op-40>
-        <icon-mdi-search />
-        {{ $t('search.label') }}
-
-        <span hidden flex-1 border border-current border-op-40 rounded border-solid px-5px py-3px sm:inline>
-          {{ isMac ? 'Cmd' : 'Ctrl' }}&nbsp;+&nbsp;K
-        </span>
+    <c-button
+      w-full
+      round
+      important:justify-start
+      :aria-label="searchButtonAriaLabel"
+      @click="isModalOpen = true"
+    >
+      <span flex items-center gap-2 op-50 text-13px font-normal truncate>
+        <icon-mdi-search text-18px shrink-0 />
+        <span truncate>{{ searchPlaceholder }}</span>
       </span>
     </c-button>
 
@@ -137,7 +160,8 @@ function activateOption(option: PaletteOption) {
         ref="inputRef"
         v-model:value="searchPrompt"
         raw-text
-        :placeholder="$t('search.placeholder')"
+        :placeholder="searchPlaceholder"
+        :aria-label="searchPlaceholder"
         autofocus
         clearable
       />
