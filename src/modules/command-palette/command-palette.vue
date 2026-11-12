@@ -139,8 +139,8 @@ const searchButtonAriaLabel = computed(() => {
     <c-button
       v-if="!styleStore.isSmallScreen"
       w-full
-      round
       important:justify-start
+      class="search-bar-trigger"
       :aria-label="searchButtonAriaLabel"
       @click="isModalOpen = true"
     >
@@ -152,8 +152,8 @@ const searchButtonAriaLabel = computed(() => {
 
     <c-tooltip v-else :tooltip="searchPlaceholder" position="bottom">
       <c-button
-        circle
         variant="text"
+        class="search-bar-mobile-trigger"
         :aria-label="searchButtonAriaLabel"
         @click="isModalOpen = true"
       >
@@ -198,17 +198,30 @@ const searchButtonAriaLabel = computed(() => {
 </template>
 
 <style scoped lang="less">
+.search-bar-trigger {
+  border-radius: var(--radius-sm, 6px) !important;
+}
+
+.search-bar-mobile-trigger {
+  width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+  border-radius: var(--radius-sm, 6px) !important;
+}
+
 .c-input-text {
   font-size: 18px;
 
   ::v-deep(.input-wrapper) {
     padding: 4px;
     padding-left: 18px;
+    border-radius: var(--radius-md, 12px) !important;
   }
 }
 
 ::v-deep(.palette-modal) {
   max-height: 80vh;
+  border-radius: var(--radius-lg, 16px) !important;
 }
 
 .c-modal--overlay {

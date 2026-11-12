@@ -26,6 +26,11 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
   Card: {
     color: '#FFFFFF',
     borderColor: 'rgba(0, 0, 0, 0.08)',
+    borderRadius: '16px',
+  },
+
+  Modal: {
+    borderRadius: '16px',
   },
 
   AutoComplete: {
@@ -69,6 +74,11 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   Card: {
     color: 'rgba(255, 255, 255, 0.05)',
     borderColor: 'rgba(255, 255, 255, 0.08)',
+    borderRadius: '16px',
+  },
+
+  Modal: {
+    borderRadius: '16px',
   },
 
   Table: {

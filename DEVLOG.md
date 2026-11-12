@@ -4,6 +4,29 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-12] Design System: Geometria de Cantos Suavizados (Opção B) e Elevações Solarpunk
+
+### 1. Contexto
+A barra superior e os componentes da interface utilizavam formatos de pílula semicircular (`9999px` / `round`), enquanto o padrão estabelecido na seção 1.4 do UI Playbook estabelece o formato retangular com quatro lados retos bem definidos e cantos suavizados (`12px` para botões de ação e `6px` para utilitários), proibindo cápsulas ovais. Além disso, cards de ferramentas e janelas modais careciam de elevação luminosa e raio de curvatura padronizado.
+
+### 2. Decisão
+1. **Adoção da Opção B nos Botões da Barra Superior ([src/layouts/base.layout.vue](src/layouts/base.layout.vue), [src/modules/command-palette/command-palette.vue](src/modules/command-palette/command-palette.vue) e [src/components/NavbarButtons.vue](src/components/NavbarButtons.vue)):**
+   - Botões de ação (`Início`, `Menu`, `Ferramentas` e `Solicitar Solução`): configurados com `border-radius: var(--radius-md, 12px)`, tornando-se blocos táteis de 34x34px com cantos suaves no mobile.
+   - Controles utilitários (`Busca`, `Idioma [PT]` e `Tema [Sol/Lua]`): padronizados com `border-radius: var(--radius-sm, 6px)`.
+2. **Raio Padronizado de Cards e Modais ([src/ui/c-card/c-card.vue](src/ui/c-card/c-card.vue) e [src/themes.ts](src/themes.ts)):** Elevação do raio de borda para `16px` (`var(--radius-lg)`) em todos os cards e janelas modais.
+3. **Hover Glow Solarpunk ([src/components/ToolCard.vue](src/components/ToolCard.vue)):** Adição de elevação de `-2px` e sombra luminosa âmbar `--color-amber-shadow` (`0 12px 40px 0 hsla(38, 92%, 50%, 0.25)`) no hover dos cards de ferramentas.
+4. **Tokens Globais de Raio ([src/brand/fonts/fonts.css](src/brand/fonts/fonts.css)):** Registro formal de `--radius-sm` (6px), `--radius-md` (12px), `--radius-lg` (16px) e `--radius-xl` (24px).
+
+### 3. Justificativa (Por quê)
+* O formato retangular de 12px e 6px confere sobriedade, alinhamento geométrico e precisão técnica de software moderno, aderindo rigorosamente à diretriz canônica do Design System 1.0.
+* O hover glow âmbar nos cards oferece feedback visual acolhedor e dinâmico coerente com a paleta Solarpunk.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Consistência estética plena com o site institucional; eliminação de formatos ovais discrepantes; transições táteis e suaves no catálogo.
+* **Trade-offs:** A profundidade 3D da barra superior via sombra suspensa (Questão 3) foi postergada para deliberação em commit posterior.
+
+---
+
 ## [2026-11-12] Design System: Superfícies Translúcidas, Canvas Neutro e Camada Aurora Glow
 
 ### 1. Contexto

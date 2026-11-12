@@ -11,7 +11,7 @@ const theme = useThemeVars();
 
 <template>
   <router-link :to="tool.path" class="it-tool-link decoration-none">
-    <c-card class="h-full transition transition-duration-0.5s !border-2px !hover:border-primary">
+    <c-card class="tool-card-surface h-full !border-1.5px !border-op-60 !hover:border-primary">
       <div flex items-center justify-between>
         <n-icon class="text-neutral-400 dark:text-neutral-600" size="40" :component="tool.icon" />
 
@@ -42,7 +42,16 @@ const theme = useThemeVars();
   </router-link>
 </template>
 
-<style lang="css" scoped>
+<style lang="less" scoped>
+.tool-card-surface {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--color-amber-shadow, 0 12px 40px 0 hsla(38, 92%, 50%, 0.25)) !important;
+    transform: translateY(-2px);
+  }
+}
+
 .tool-privacy-icon {
   display: inline-block;
   height: 0.9em;

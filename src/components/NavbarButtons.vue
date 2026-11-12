@@ -81,7 +81,7 @@ const currentLocaleDisplay = computed(() => {
 <template>
   <c-tooltip :tooltip="$t('home.nav.language')" position="bottom">
     <n-dropdown :options="languageOptions" trigger="click" @select="onLanguageSelect">
-      <c-button round variant="text" font-semibold :aria-label="$t('home.nav.language')">
+      <c-button variant="text" font-semibold class="lang-button" :aria-label="$t('home.nav.language')">
         <span class="locale-code">{{ currentLocaleDisplay }}</span>
       </c-button>
     </n-dropdown>
@@ -89,8 +89,8 @@ const currentLocaleDisplay = computed(() => {
 
   <c-tooltip :tooltip="themeTooltip" position="bottom">
     <c-button
-      circle
       variant="text"
+      class="theme-button"
       :aria-label="themeTooltip"
       @click="styleStore.toggleDark()"
     >
@@ -100,6 +100,19 @@ const currentLocaleDisplay = computed(() => {
 </template>
 
 <style lang="less" scoped>
+.lang-button {
+  border-radius: var(--radius-sm, 6px) !important;
+  padding: 0 10px !important;
+  height: 34px !important;
+}
+
+.theme-button {
+  width: 34px !important;
+  height: 34px !important;
+  padding: 0 !important;
+  border-radius: var(--radius-sm, 6px) !important;
+}
+
 .locale-code {
   font-size: 14px;
   font-weight: 700;

@@ -114,10 +114,9 @@ const solutionButtonMobileLabel = computed(() => {
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
           <c-button
             to="/"
-            :circle="styleStore.isSmallScreen"
-            :round="!styleStore.isSmallScreen"
             variant="text"
             font-semibold
+            class="nav-button-action"
             :aria-label="$t('home.home')"
           >
             <NIcon size="19" :component="Home2" :class="{ 'mr-1': !styleStore.isSmallScreen }" />
@@ -127,10 +126,9 @@ const solutionButtonMobileLabel = computed(() => {
 
         <c-tooltip tooltip="Menu" position="bottom">
           <c-button
-            :circle="styleStore.isSmallScreen"
-            :round="!styleStore.isSmallScreen"
             variant="text"
             font-semibold
+            class="nav-button-action"
             aria-label="Menu"
             @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
           >
@@ -142,10 +140,9 @@ const solutionButtonMobileLabel = computed(() => {
         <c-tooltip tooltip="Ferramentas" position="bottom">
           <c-button
             to="/ferramentas"
-            :circle="styleStore.isSmallScreen"
-            :round="!styleStore.isSmallScreen"
             variant="text"
             font-semibold
+            class="nav-button-action"
             aria-label="Ferramentas"
           >
             <NIcon size="19" :component="LayoutGrid" :class="{ 'mr-1': !styleStore.isSmallScreen }" />
@@ -175,7 +172,6 @@ const solutionButtonMobileLabel = computed(() => {
 
         <c-tooltip position="bottom" :tooltip="solutionButtonLabel">
           <c-button
-            round
             href="https://thiagomaol.com.br/solicitar-solucao/"
             rel="noopener noreferrer"
             target="_blank"
@@ -212,11 +208,23 @@ const solutionButtonMobileLabel = computed(() => {
 //     background-size: @size @size;
 // }
 
+.nav-button-action {
+  border-radius: var(--radius-md, 12px) !important;
+  transition: all 0.15s ease !important;
+
+  @media (max-width: 700px) {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+  }
+}
+
 .solution-button {
   background-color: #f97415 !important;
   color: #ffffff !important;
   font-weight: 600;
   font-size: 13px;
+  border-radius: var(--radius-md, 12px) !important;
   border: 1px solid #f97415;
   transition: all 0.2s ease !important;
   box-shadow: 0 2px 8px rgba(249, 116, 21, 0.25);

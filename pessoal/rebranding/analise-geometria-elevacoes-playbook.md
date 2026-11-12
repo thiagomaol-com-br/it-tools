@@ -1,0 +1,47 @@
+# Análise de Geometria, Cantos e Elevações: UI Playbook (Seção 1.4) vs. IT-Tools
+
+Auditoria técnica da seção **1.4. Geometria, Cantos e Elevações** e levantamento de pontos de divergência para alinhamento com o **Design System 1.0**.
+
+---
+
+## 1. O que podemos aplicar de imediato (Zero Risco)
+
+1. **Tokens de Raio no CSS Global ([fonts.css](src/brand/fonts/fonts.css) / `:root`):**
+   - `--radius-sm: 6px;` (0.375rem)
+   - `--radius-md: 12px;` (0.75rem)
+   - `--radius-lg: 16px;` (1rem)
+   - `--radius-xl: 24px;` (1.5rem)
+2. **Raio e Elevação de Cards e Modais ([c-card.vue](src/ui/c-card/c-card.vue) e [themes.ts](src/themes.ts)):**
+   - Atualizar o raio de borda dos cards de ferramentas de `8px` para `16px` (`var(--radius-lg)`).
+   - Atualizar os modais (como a janela da paleta de busca `palette-modal`) para `16px` com `backdrop-filter: blur(12px)`.
+   - Adicionar nos cards de ferramentas ([ToolCard.vue](src/components/ToolCard.vue)) o hover glow Solarpunk com a sombra âmbar `--color-amber-shadow` (`0 12px 40px 0 hsla(38, 92%, 50%, 0.25)`), mantendo a borda primária `#F97415`.
+3. **Transições Padronizadas:**
+   - Unificar transições de hover em `150ms ease` ou `200ms ease` e microinterações de rotação em `300ms cubic-bezier(0.4, 0, 0.2, 1)`.
+
+---
+
+## 2. Questão Relevante para Análise e Decisão: Formato dos Botões da Barra Superior
+
+### O Conflito / Divergência:
+* **O Playbook (Seção 1.4) estabelece expressamente:**
+  > *"Controles Utilitários da Barra (Tema/Busca), Eyebrows, Badges, Tags: `6px` (`var(--radius-sm)`) — formato retangular com quatro lados retos bem definidos e cantos suavizados. **Proibido formato de cápsula/pílula oval com extremidades semicirculares `9999px`**."*  
+  > *"Botões, Ações e Inputs: `12px` (`var(--radius-md)`)."*
+* **O que acabamos de lapidar na barra superior:**
+  - Definimos os botões textuais à esquerda (**`[ 🏠 Início ]`**, **`[ ☰ Menu ]`**, **`[ ⊞ Ferramentas ]`**), o seletor **`[ PT ]`** e o botão principal **`[ Solicitar Solução ↗ ]`** com a propriedade `round` (pílula com extremidades totalmente curvas `9999px`).
+  - No mobile, usamos `circle` (círculo 50% perfeito).
+
+### Opções para Sua Decisão:
+
+* **Opção A (Manter o Estilo Atual Lapidado):**
+  - Manter os botões da barra superior no formato de pílula arredondada (`round` / `9999px`), que você aprovou e testou nos passos anteriores.
+  - Aplicar as regras da Seção 1.4 apenas nos **Cards, Modais, Inputs e Sombras da Barra**, preservando o formato dos botões do topo como exceção aprovada para a aplicação IT-Tools.
+
+* **Opção B (Alinhamento Estrito com o Playbook 1.0):**
+  - Ajustar o botão de ação principal **`[ Solicitar Solução ↗ ]`** para `border-radius: 12px` (retângulo suave com cantos de 12px).
+  - Ajustar a barra de busca e os botões textuais/utilitários para `border-radius: 6px` ou `12px` (retângulos com cantos suavizados), eliminando as pontas semicirculares de pílula.
+
+* **RESOLUÇÃO:**
+  - OPÇÃO B.
+
+---
+
