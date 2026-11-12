@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import Coffee from '~icons/tabler/coffee';
 import Home2 from '~icons/tabler/home-2';
+import Menu2 from '~icons/tabler/menu-2';
+import LayoutGrid from '~icons/tabler/layout-grid';
 import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
@@ -97,19 +99,30 @@ const tools = computed<ToolCategory[]>(() => [
 
     <template #content>
       <div ref="navbarRef" class="navbar" flex items-center justify-center gap-2>
-        <c-button
-          round
-          variant="text"
-          font-semibold
-          :aria-label="$t('home.toggleMenu')"
-          @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
-        >
-          Menu
-        </c-button>
-
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
-          <c-button to="/" circle variant="text" :aria-label="$t('home.home')">
-            <NIcon size="25" :component="Home2" />
+          <c-button to="/" round variant="text" font-semibold :aria-label="$t('home.home')">
+            <NIcon size="19" :component="Home2" mr-1 />
+            {{ $t('home.home') }}
+          </c-button>
+        </c-tooltip>
+
+        <c-tooltip :tooltip="$t('home.toggleMenu')" position="bottom">
+          <c-button
+            round
+            variant="text"
+            font-semibold
+            :aria-label="$t('home.toggleMenu')"
+            @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
+          >
+            <NIcon size="19" :component="Menu2" mr-1 />
+            {{ $t('home.toggleMenu') }}
+          </c-button>
+        </c-tooltip>
+
+        <c-tooltip tooltip="Ferramentas" position="bottom">
+          <c-button to="/ferramentas" round variant="text" font-semibold aria-label="Ferramentas">
+            <NIcon size="19" :component="LayoutGrid" mr-1 />
+            Ferramentas
           </c-button>
         </c-tooltip>
 

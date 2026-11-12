@@ -4,6 +4,27 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-11] Navegação e Roteamento Semântico: Padronização Textual do Topo e Rota /ferramentas
+
+### 1. Contexto
+A barra superior do cabeçalho misturava ícones circulares abstratos, links externos irrelevantes para o público final (como o repositório GitHub) e convenções herdadas do projeto upstream (como `/about` para acessar o catálogo de ferramentas). Era necessário unificar o padrão visual em botões textuais intuitivos, reorganizar a hierarquia de navegação à esquerda da busca e semantizar o roteamento do catálogo.
+
+### 2. Decisão
+1. **Padronização Textual em Pílula à Esquerda:** Reestruturação da barra em [src/layouts/base.layout.vue](src/layouts/base.layout.vue) com botões textuais combinados a ícones representativos em sequência: 1º `[ 🏠 Início ]` (`to="/"`), 2º `[ ☰ Menu ]` (controle da barra lateral) e 3º `[ ⊞ Ferramentas ]` (`to="/ferramentas"`, usando o ícone de grade de aplicativos `LayoutGrid`).
+2. **Remoção de Elementos Desnecessários:** Eliminação do link para o repositório GitHub e do antigo botão circular de informação do componente [src/components/NavbarButtons.vue](src/components/NavbarButtons.vue).
+3. **Roteamento Semântico (`/ferramentas`):** Definição da rota primária `/ferramentas` em [src/router.ts](src/router.ts) para o catálogo de ferramentas, mantendo o alias `/about` ativo para preservar compatibilidade com eventuais links preexistentes.
+
+### 3. Justificativa (Por quê)
+* Botões textuais com ícones e rótulos explícitos ("Início", "Menu", "Ferramentas") eliminam a ambiguidade de ícones órfãos e guiam o usuário de forma clara.
+* A rota `/ferramentas` é autoexplicativa e profissional, condizente com o produto integrado à marca Thiago Maol.
+* A remoção do botão GitHub no topo limpa a interface e direciona a atenção do usuário para as ferramentas de negócio.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Navegação consistente, limpa e acessível no topo da página; URL semântica e profissional para o catálogo de ferramentas.
+* **Trade-offs:** A barra superior à esquerda ocupa ligeiramente mais largura horizontal por comportar textos ("Início", "Menu", "Ferramentas") em vez de ícones puramente circulares.
+
+---
+
 ## [2026-11-11] Internacionalização: Localização Padrão em Português, Carga Síncrona e Collação Alfabética
 
 ### 1. Contexto

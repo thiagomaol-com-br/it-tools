@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 import { NIcon, useThemeVars } from 'naive-ui';
-import IconBrandGithub from '~icons/tabler/brand-github';
 import IconCheck from '~icons/tabler/check';
 import IconDeviceDesktop from '~icons/tabler/device-desktop';
-import IconInfoCircle from '~icons/tabler/info-circle';
 import IconLanguage from '~icons/tabler/language';
 import IconMoon from '~icons/tabler/moon';
 import IconSun from '~icons/tabler/sun';
@@ -84,36 +82,9 @@ const themeTriggerIcon = computed(() => (isDarkTheme.value ? IconMoon : IconSun)
 function onThemeSelect(key: 'auto' | 'light' | 'dark') {
   styleStore.themeMode = key;
 }
-
-// The mobile menu closes on navigation (MenuLayout watches the route), but
-// clicking About while already on /about doesn't navigate — close explicitly.
-function closeMenuOnSmallScreen() {
-  if (styleStore.isSmallScreen) {
-    styleStore.isMenuCollapsed = true;
-  }
-}
 </script>
 
 <template>
-  <c-tooltip :tooltip="$t('home.nav.github')" position="bottom">
-    <c-button
-      circle
-      variant="text"
-      href="https://github.com/thiagomaol-com-br/it-tools"
-      target="_blank"
-      rel="noopener noreferrer"
-      :aria-label="$t('home.nav.githubRepository')"
-    >
-      <n-icon size="25" :component="IconBrandGithub" />
-    </c-button>
-  </c-tooltip>
-
-  <c-tooltip :tooltip="$t('home.nav.about')" position="bottom">
-    <c-button circle variant="text" to="/about" :aria-label="$t('home.nav.aboutLabel')" @click="closeMenuOnSmallScreen">
-      <n-icon size="25" :component="IconInfoCircle" />
-    </c-button>
-  </c-tooltip>
-
   <n-dropdown :options="themeOptions" trigger="click" @select="onThemeSelect">
     <c-button circle variant="text" :aria-label="t('home.nav.mode')">
       <n-icon size="25" :component="themeTriggerIcon" />

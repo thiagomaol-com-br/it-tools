@@ -45,8 +45,9 @@ const router = createRouter({
       component: AboutPage,
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/ferramentas',
+      alias: '/about',
+      name: 'ferramentas',
       component: HomePage,
     },
     ...toolsRoutes,
