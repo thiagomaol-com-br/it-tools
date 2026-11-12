@@ -1,10 +1,38 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
-import homeContent from './home-content.md?raw';
+import homeContentPt from './home-content.pt.md?raw';
+import homeContentEs from './home-content.es.md?raw';
+import homeContentEn from './home-content.en.md?raw';
+
+const { locale } = useI18n();
 
 const title = 'Thiago Maol. | Ferramentas';
-const desc =
+const descPt =
   'Central de ferramentas online de Thiago Maol. Utilitários essenciais e seguros para desenvolvedores e empresas.';
+const descEs =
+  'Central de herramientas online de Thiago Maol. Utilidades esenciales y seguras para desarrolladores y empresas.';
+const descEn =
+  'Online tools hub by Thiago Maol. Essential and secure utilities for developers and businesses.';
+
+const activeContent = computed(() => {
+  if (locale.value === 'pt') {
+    return homeContentPt;
+  }
+  if (locale.value === 'es') {
+    return homeContentEs;
+  }
+  return homeContentEn;
+});
+
+const activeDesc = computed(() => {
+  if (locale.value === 'pt') {
+    return descPt;
+  }
+  if (locale.value === 'es') {
+    return descEs;
+  }
+  return descEn;
+});
 
 useHead({
   title,
@@ -23,24 +51,24 @@ useHead({
     },
     {
       name: 'description',
-      content: desc,
+      content: activeDesc,
     },
     {
       itemprop: 'description',
-      content: desc,
+      content: activeDesc,
     } as never,
     {
       property: 'og:description',
-      content: desc,
+      content: activeDesc,
     },
     {
       property: 'twitter:description',
-      content: desc,
+      content: activeDesc,
     },
   ],
 });
 </script>
 
 <template>
-  <c-markdown :markdown="homeContent" mx-auto mt-50px />
+  <c-markdown :markdown="activeContent" mx-auto mt-50px />
 </template>
