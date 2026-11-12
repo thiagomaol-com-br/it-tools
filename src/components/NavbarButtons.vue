@@ -2,8 +2,8 @@
 import type { Component } from 'vue';
 import { NIcon, useThemeVars } from 'naive-ui';
 import IconCheck from '~icons/tabler/check';
-import IconMoon from '~icons/tabler/moon';
-import IconSun from '~icons/tabler/sun';
+import IconMoon from '@/brand/icons/moon.svg?component';
+import IconSun from '@/brand/icons/sun.svg?component';
 import { appLocales } from '@/plugins/i18n.plugin';
 import { useStyleStore } from '@/stores/style.store';
 
@@ -94,7 +94,7 @@ const currentLocaleDisplay = computed(() => {
       :aria-label="themeTooltip"
       @click="styleStore.toggleDark()"
     >
-      <n-icon size="22" :component="themeTriggerIcon" />
+      <n-icon size="20" :component="themeTriggerIcon" />
     </c-button>
   </c-tooltip>
 </template>

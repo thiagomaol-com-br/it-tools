@@ -1,0 +1,39 @@
+# Análise de Mídias & Ícones Canônicos: UI Playbook (Seção 1.3) vs. IT-Tools
+
+Auditoria de conformidade da seção **1.3. Mídias & Ícones Canônicos** com a estrutura visual e de ativos do **IT-Tools**.
+
+---
+
+## 1. O que já está 100% compatível
+
+* **Logotipos Oficiais ([src/brand/logo/](src/brand/logo/)):**
+  - Todos os vetores canônicos de `assets/logos/` já estão importados e em uso:
+    - [logo-gradient-dark.svg](src/brand/logo/logo-gradient-dark.svg) e [logo-gradient-light.svg](src/brand/logo/logo-gradient-light.svg) (com gradientes a 135° aprovados).
+    - Versões monocromáticas [logo-dark.svg](src/brand/logo/logo-dark.svg) e [logo-light.svg](src/brand/logo/logo-light.svg).
+* **Isotipo / Brand Icons:**
+  - Arquivos canônicos `icon-accent.svg`, `icon-dark.svg` e `icon-light.svg` já presentes em `src/brand/logo/`.
+* **Favicons Oficiais:**
+  - Vetor adaptativo [public/favicon.svg](public/favicon.svg) e fallbacks PNG/ICO sincronizados com a fonte canônica.
+
+---
+
+## 2. O que podemos aplicar de imediato (Zero Risco)
+
+1. **Centralização dos Ícones Canônicos em `src/brand/icons/`:**
+   - Copiar a pasta de ícones funcionais canônicos de [pessoal/rebranding/design-system-1p0/assets/ui-icons/](pessoal/rebranding/design-system-1p0/assets/ui-icons/) (`sun.svg`, `moon.svg`, `email.svg`, `whatsapp.svg`, `github.svg`, `youtube.svg`, `instagram.svg`) para `src/brand/icons/`.
+2. **Ícones Canônicos de Tema no Alternador ([NavbarButtons.vue](src/components/NavbarButtons.vue)):**
+   - Substituir os ícones Tabler genéricos `IconSun` e `IconMoon` pelos componentes SVG oficiais do Playbook (`sun.svg?component` e `moon.svg?component`), garantindo exata fidelidade geométrica com o site institucional (`hub/site`).
+3. **Padrão de Dimensionamento:**
+   - Confirmar que todos os ícones da barra superior operam no intervalo canônico de `20px` a `24px` com traço de `2px`.
+* **RESOLUÇÃO:**
+  - OK.
+
+---
+
+## 3. Salvaguarda Importante (Preservação de Catálogo)
+
+* **Ícones das 474 Ferramentas:**
+  - O ecossistema de ferramentas do IT-Tools utiliza centenas de ícones individuais (`@vicons/tabler`, `@vicons/material`, `@tabler/icons-vue`) associados semanticamente a cada ferramenta específica (como conversores, redes, regex, geradores).
+  - Esses ícones pertencem ao catálogo funcional e **não devem ser alterados**, limitando as padronizações canônicas estritamente à casca da interface (UI Shell: barra de navegação, cabeçalho e tema).
+* **RESOLUÇÃO:**
+  - OK.
