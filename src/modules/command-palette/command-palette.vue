@@ -4,6 +4,9 @@ import * as _ from 'es-toolkit/compat';
 import { useCommandPaletteStore } from './command-palette.store';
 import type { PaletteOption } from './command-palette.types';
 import { loadLocaleMessages } from '@/plugins/i18n.plugin';
+import { useStyleStore } from '@/stores/style.store';
+
+const styleStore = useStyleStore();
 
 const isModalOpen = ref(false);
 const inputRef = ref();
@@ -132,8 +135,9 @@ const searchButtonAriaLabel = computed(() => {
 </script>
 
 <template>
-  <div flex-1>
+  <div :class="{ 'flex-1': !styleStore.isSmallScreen }">
     <c-button
+      v-if="!styleStore.isSmallScreen"
       w-full
       round
       important:justify-start
@@ -145,6 +149,17 @@ const searchButtonAriaLabel = computed(() => {
         <span truncate>{{ searchPlaceholder }}</span>
       </span>
     </c-button>
+
+    <c-tooltip v-else :tooltip="searchPlaceholder" position="bottom">
+      <c-button
+        circle
+        variant="text"
+        :aria-label="searchButtonAriaLabel"
+        @click="isModalOpen = true"
+      >
+        <icon-mdi-search text-19px />
+      </c-button>
+    </c-tooltip>
 
     <c-modal
       v-model:open="isModalOpen"

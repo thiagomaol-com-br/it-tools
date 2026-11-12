@@ -53,9 +53,9 @@ const solutionButtonLabel = computed(() => {
 
 const solutionButtonMobileLabel = computed(() => {
   if (locale.value === 'pt' || locale.value === 'es') {
-    return 'Solicitar ↗';
+    return 'Solicitar';
   }
-  return 'Request ↗';
+  return 'Request';
 });
 </script>
 
@@ -116,29 +116,44 @@ const solutionButtonMobileLabel = computed(() => {
     <template #content>
       <div ref="navbarRef" class="navbar" flex items-center justify-center gap-2>
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
-          <c-button to="/" round variant="text" font-semibold :aria-label="$t('home.home')">
-            <NIcon size="19" :component="Home2" mr-1 />
-            {{ $t('home.home') }}
+          <c-button
+            to="/"
+            :circle="styleStore.isSmallScreen"
+            :round="!styleStore.isSmallScreen"
+            variant="text"
+            font-semibold
+            :aria-label="$t('home.home')"
+          >
+            <NIcon size="19" :component="Home2" :class="{ 'mr-1': !styleStore.isSmallScreen }" />
+            <span v-if="!styleStore.isSmallScreen">{{ $t('home.home') }}</span>
           </c-button>
         </c-tooltip>
 
         <c-tooltip tooltip="Menu" position="bottom">
           <c-button
-            round
+            :circle="styleStore.isSmallScreen"
+            :round="!styleStore.isSmallScreen"
             variant="text"
             font-semibold
             aria-label="Menu"
             @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
           >
-            <NIcon size="19" :component="Menu2" mr-1 />
-            Menu
+            <NIcon size="19" :component="Menu2" :class="{ 'mr-1': !styleStore.isSmallScreen }" />
+            <span v-if="!styleStore.isSmallScreen">Menu</span>
           </c-button>
         </c-tooltip>
 
         <c-tooltip tooltip="Ferramentas" position="bottom">
-          <c-button to="/ferramentas" round variant="text" font-semibold aria-label="Ferramentas">
-            <NIcon size="19" :component="LayoutGrid" mr-1 />
-            Ferramentas
+          <c-button
+            to="/ferramentas"
+            :circle="styleStore.isSmallScreen"
+            :round="!styleStore.isSmallScreen"
+            variant="text"
+            font-semibold
+            aria-label="Ferramentas"
+          >
+            <NIcon size="19" :component="LayoutGrid" :class="{ 'mr-1': !styleStore.isSmallScreen }" />
+            <span v-if="!styleStore.isSmallScreen">Ferramentas</span>
           </c-button>
         </c-tooltip>
 
