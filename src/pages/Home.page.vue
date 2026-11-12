@@ -293,7 +293,7 @@ onUnmounted(() => {
 
       <transition name="height">
         <div v-if="toolStore.favoriteTools.length > 0">
-          <h3 class="mb-5px mt-25px font-500 text-neutral-400">
+          <h3 class="mb-8px mt-30px text-20px font-semibold font-heading text-neutral-600 dark:text-neutral-300">
             {{ $t('home.categories.favoriteTools') }}
             <c-tooltip :tooltip="$t('home.categories.favoritesDndToolTip')">
               <n-icon :component="IconDragDrop" size="18" />
@@ -316,7 +316,7 @@ onUnmounted(() => {
       </transition>
 
       <div v-if="toolStore.newTools.length > 0">
-        <h3 class="mb-5px mt-25px font-500 text-neutral-400">
+        <h3 class="mb-8px mt-30px text-20px font-semibold font-heading text-neutral-600 dark:text-neutral-300">
           {{ t('home.categories.newestTools') }}
         </h3>
         <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -328,7 +328,7 @@ onUnmounted(() => {
         <HomeCustom />
       </Suspense>
 
-      <h3 class="mb-5px mt-25px font-500 text-neutral-400">
+      <h3 class="mb-8px mt-30px text-20px font-semibold font-heading text-neutral-600 dark:text-neutral-300">
         {{ $t('home.categories.allTools') }}
       </h3>
       <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">

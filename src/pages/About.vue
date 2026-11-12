@@ -77,6 +77,31 @@ useHead({
 
 <style scoped lang="less">
 .about-page {
+  :deep(h1) {
+    font-family: var(--font-heading), "Space Grotesk", sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  :deep(h2) {
+    font-family: var(--font-heading), "Space Grotesk", sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  :deep(p),
+  :deep(li) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   :deep(.icon-list) {
     list-style: none;
     padding-left: 0;
@@ -120,9 +145,10 @@ useHead({
     background: rgba(249, 116, 21, 0.12);
     border: 1px solid rgba(249, 116, 21, 0.4);
     color: #f97415;
-    font-family: monospace;
-    font-size: 0.85rem;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
     font-weight: 700;
+    letter-spacing: 0.05em;
   }
 
   :deep(.icon-list-content) {

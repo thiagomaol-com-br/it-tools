@@ -30,12 +30,12 @@ const theme = useThemeVars();
         </div>
       </div>
 
-      <div class="truncat my-5px text-lg text-black dark:text-white">
+      <div class="truncat my-5px text-20px font-semibold text-black dark:text-white">
         {{ tool.name }}
         <World v-if="tool.externAccessDescription" class="tool-privacy-icon" />
       </div>
 
-      <div class="line-clamp-2 text-neutral-500 dark:text-neutral-400">
+      <div class="line-clamp-2 text-14px text-neutral-500 dark:text-neutral-400">
         {{ tool.description }}
       </div>
     </c-card>

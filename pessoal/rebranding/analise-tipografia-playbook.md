@@ -22,6 +22,8 @@ Documento de auditoria e levantamento de pontos de atenção para alinhamento da
    - Ajustar o título de cada card para `1.25rem` (20px) e `font-weight: 600`, conferindo a presença visual descrita no Playbook sem alterar a grade.
 3. **Mapeamento no UnoCSS ([unocss.config.ts](unocss.config.ts)):**
    - Registrar as famílias `font-display: 'Space Grotesk'` e `font-body: 'Inter'` para permitir o uso direto de classes utilitárias.
+* **RESOLUÇÃO:**
+  - OK, PODE APLICAR!
 
 ---
 
@@ -36,6 +38,8 @@ Documento de auditoria e levantamento de pontos de atenção para alinhamento da
 * **Proposta de Compatibilização:**
   - Usar o H1 com escala fluida máxima (`clamp(...)` peso 800) exclusivamente na **Página Inicial**.
   - No cabeçalho das ferramentas individuais ([tool.layout.vue](src/layouts/tool.layout.vue)), aplicar a tipografia `Space Grotesk` com peso 700, mas com escala mais comedida (ex.: `clamp(1.75rem, 3vw, 2.25rem)`), preservando a densidade necessária para o trabalho técnico.
+* **RESOLUÇÃO:**
+  - Proposta de Compatibilização APROVADA.
 
 ---
 
@@ -48,6 +52,8 @@ Documento de auditoria e levantamento de pontos de atenção para alinhamento da
 * **Opções para Análise:**
   - **Opção A (Mais leve):** Manter o fallback nativo de sistema (`ui-monospace, monospace`), sem adicionar novos downloads de fontes no carregamento do site.
   - **Opção B (Fidelidade máxima):** Baixar e empacotar localmente o arquivo `.woff2` do `JetBrains Mono` em `src/brand/fonts/` para padronizar todos os campos técnicos.
+* **RESOLUÇÃO:**
+  - OPÇÃO A.
 
 ---
 
@@ -59,3 +65,5 @@ Documento de auditoria e levantamento de pontos de atenção para alinhamento da
   - Ao declarar `font-weight: 800`, o navegador utiliza o peso máximo disponível (700 Bold) ou aplica sintetização.
 * **Impacto:**
   - O peso 700 já entrega o impacto visual necessário para os títulos em Space Grotesk. Se você fizer questão do 800 ultra-pesado nativo, precisaremos substituir o asset `.woff2` por uma versão que contenha o peso 800 embutido.
+* **RESOLUÇÃO:**
+  - PODE DEIXAR COMO ESTÁ, NÃO PRECISA APLICAR ESSE DETALHE.

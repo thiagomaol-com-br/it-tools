@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-12] Design System: Alinhamento Tipográfico com UI Playbook e Escalas Fluidas
+
+### 1. Contexto
+Com o início da fase de rebranding baseada no UI Playbook (Design System 1.0), era necessário harmonizar a tipografia do IT-Tools com o padrão visual do site institucional (`hub/site`). O sistema anterior utilizava fontes e tamanhos dispersos (títulos em `Inter` com peso 400, cards sem hierarquia de H3 e ausência de escalas fluidas com `clamp`).
+
+### 2. Decisão
+1. **Escala Fluida na Página Inicial ([src/pages/About.vue](src/pages/About.vue)):** Aplicação de `Space Grotesk` com peso 800 e escala fluida `clamp(2.5rem, 5.5vw, 4.25rem)` no H1 principal, e peso 700 com `clamp(1.75rem, 3.5vw, 2.5rem)` nos títulos de seção H2.
+2. **Compatibilização no Cabeçalho das Ferramentas ([src/layouts/tool.layout.vue](src/layouts/tool.layout.vue)):** Adoção de `Space Grotesk` com peso 700 em escala contida (`clamp(1.75rem, 3vw, 2.25rem)`), preservando a área de trabalho útil das ferramentas técnicas.
+3. **Hierarquia de Cards e Seções ([src/components/ToolCard.vue](src/components/ToolCard.vue) e [src/pages/Home.page.vue](src/pages/Home.page.vue)):** Elevação dos títulos de cards para `1.25rem` (20px) com `font-weight: 600` e títulos de seções do catálogo com `Space Grotesk` (`font-heading`).
+4. **Mapeamento de Famílias no UnoCSS ([unocss.config.ts](unocss.config.ts)):** Inclusão de utilitários `font-display`, `font-heading`, `font-body` e `font-mono` (mantendo fallback nativo leve de sistema aprovado).
+
+### 3. Justificativa (Por quê)
+* As escalas fluidas (`clamp`) proporcionam responsividade contínua entre mobile e telas ultrawide sem quebras bruscas de linha.
+* Diferenciar a escala do H1 da Home (Hero de apresentação) da escala do H1 das ferramentas técnicas mantém a densidade de informação necessária para o uso produtivo dos utilitários.
+* A consistência de fontes com `Space Grotesk` e `Inter` integra visualmente o aplicativo ao ecossistema do site institucional do autor.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Identidade tipográfica profissional e moderna idêntica ao site institucional; hierarquia clara entre títulos, cards e microcópias.
+* **Trade-offs:** Títulos longos de ferramentas em telas pequenas podem ocupar duas linhas com a tipografia `Space Grotesk` destacada, comportamento previsto e absorvido pelo layout.
+
+---
+
 ## [2026-11-11] Navegação e Roteamento Semântico: Padronização Textual do Topo e Rota /ferramentas
 
 ### 1. Contexto

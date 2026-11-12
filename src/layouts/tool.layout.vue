@@ -169,11 +169,13 @@ const linkTheme = useTheme();
     width: 100%;
 
     .n-h1 {
-      opacity: 0.9;
-      font-size: 40px;
-      font-weight: 400;
+      font-family: var(--font-heading), "Space Grotesk", sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      opacity: 0.95;
       margin: 0;
-      line-height: 1;
     }
 
     .separator {
@@ -187,8 +189,9 @@ const linkTheme = useTheme();
 
     .description {
       margin: 0;
-
-      opacity: 0.7;
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.75;
     }
   }
 }

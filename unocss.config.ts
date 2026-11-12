@@ -17,7 +17,13 @@ export default defineConfig({
   theme: {
     colors: {
       primary: '#F97415',
-
+    },
+    fontFamily: {
+      sans: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      display: '"Space Grotesk", system-ui, sans-serif',
+      heading: '"Space Grotesk", system-ui, sans-serif',
+      body: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
     },
   },
   shortcuts: {
