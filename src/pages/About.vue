@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head';
+import homeContent from './home-content.md?raw';
 
-const { t } = useI18n();
-
-const desc = t(
-  'about.text.collection-of-handy-online-tools-for-developers-with-great-ux-it-tools-is-a-free-and-open-source-collection-of-handy-online-tools-for-developers-and-people-working-in-it',
-);
 const title = 'Thiago Maol. | Ferramentas';
+const desc =
+  'Central de ferramentas online de Thiago Maol. Utilitários essenciais e seguros para desenvolvedores e empresas.';
+
 useHead({
   title,
   meta: [
@@ -43,5 +42,5 @@ useHead({
 </script>
 
 <template>
-  <c-markdown :markdown="$t('about.content-fork')" mx-auto mt-50px />
+  <c-markdown :markdown="homeContent" mx-auto mt-50px />
 </template>
