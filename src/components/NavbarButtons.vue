@@ -2,7 +2,6 @@
 import type { Component } from 'vue';
 import { NIcon, useThemeVars } from 'naive-ui';
 import IconCheck from '~icons/tabler/check';
-import IconDeviceDesktop from '~icons/tabler/device-desktop';
 import IconMoon from '~icons/tabler/moon';
 import IconSun from '~icons/tabler/sun';
 import { appLocales } from '@/plugins/i18n.plugin';
@@ -58,29 +57,17 @@ function onLanguageSelect(key: string) {
   locale.value = key;
 }
 
-const themeOptions = computed(() => [
-  {
-    key: 'auto',
-    label: optionLabel(t('home.nav.themeSystem', 'System'), themeMode.value === 'auto'),
-    icon: renderIcon(IconDeviceDesktop),
-  },
-  {
-    key: 'light',
-    label: optionLabel(t('home.nav.themeLight', 'Light'), themeMode.value === 'light'),
-    icon: renderIcon(IconSun),
-  },
-  {
-    key: 'dark',
-    label: optionLabel(t('home.nav.themeDark', 'Dark'), themeMode.value === 'dark'),
-    icon: renderIcon(IconMoon),
-  },
-]);
-
 const themeTriggerIcon = computed(() => (isDarkTheme.value ? IconMoon : IconSun));
 
-function onThemeSelect(key: 'auto' | 'light' | 'dark') {
-  styleStore.themeMode = key;
-}
+const themeTooltip = computed(() => {
+  if (locale.value === 'pt') {
+    return isDarkTheme.value ? 'Mudar para modo claro' : 'Mudar para modo escuro';
+  }
+  if (locale.value === 'es') {
+    return isDarkTheme.value ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+  }
+  return isDarkTheme.value ? 'Switch to light mode' : 'Switch to dark mode';
+});
 
 const currentLocaleDisplay = computed(() => {
   const code = String(locale.value || 'pt');
@@ -92,17 +79,24 @@ const currentLocaleDisplay = computed(() => {
 </script>
 
 <template>
-  <n-dropdown :options="languageOptions" trigger="click" @select="onLanguageSelect">
-    <c-button round variant="text" font-semibold :aria-label="t('home.nav.language', 'Idioma')">
-      <span class="locale-code">{{ currentLocaleDisplay }}</span>
-    </c-button>
-  </n-dropdown>
+  <c-tooltip :tooltip="$t('home.nav.language')" position="bottom">
+    <n-dropdown :options="languageOptions" trigger="click" @select="onLanguageSelect">
+      <c-button round variant="text" font-semibold :aria-label="$t('home.nav.language')">
+        <span class="locale-code">{{ currentLocaleDisplay }}</span>
+      </c-button>
+    </n-dropdown>
+  </c-tooltip>
 
-  <n-dropdown :options="themeOptions" trigger="click" @select="onThemeSelect">
-    <c-button circle variant="text" :aria-label="t('home.nav.mode')">
-      <n-icon size="25" :component="themeTriggerIcon" />
+  <c-tooltip :tooltip="themeTooltip" position="bottom">
+    <c-button
+      circle
+      variant="text"
+      :aria-label="themeTooltip"
+      @click="styleStore.toggleDark()"
+    >
+      <n-icon size="22" :component="themeTriggerIcon" />
     </c-button>
-  </n-dropdown>
+  </c-tooltip>
 </template>
 
 <style lang="less" scoped>
