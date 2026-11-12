@@ -77,10 +77,6 @@ const solutionButtonMobileLabel = computed(() => {
       </RouterLink>
 
       <div class="sider-content">
-        <div v-if="styleStore.isSmallScreen" mb-24px flex justify-center>
-          <NavbarButtons />
-        </div>
-
         <CollapsibleToolMenu :tools-by-category="tools" />
 
         <div class="footer">
@@ -114,7 +110,7 @@ const solutionButtonMobileLabel = computed(() => {
     </template>
 
     <template #content>
-      <div ref="navbarRef" class="navbar" flex items-center justify-center gap-2>
+      <div ref="navbarRef" class="navbar" flex items-center justify-center gap-1.5 sm:gap-2>
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
           <c-button
             to="/"
@@ -174,7 +170,7 @@ const solutionButtonMobileLabel = computed(() => {
         </Suspense>
 
         <div>
-          <NavbarButtons v-if="!styleStore.isSmallScreen" />
+          <NavbarButtons />
         </div>
 
         <c-tooltip position="bottom" :tooltip="solutionButtonLabel">
@@ -222,6 +218,12 @@ const solutionButtonMobileLabel = computed(() => {
   transition: all 0.2s ease !important;
   box-shadow: 0 2px 8px rgba(249, 116, 21, 0.25);
 
+  @media (max-width: 700px) {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 12px;
+  }
+
   &:hover {
     background-color: #ea580c !important;
     border-color: #ea580c !important;
@@ -267,7 +269,7 @@ const solutionButtonMobileLabel = computed(() => {
     // Bleed over the scroll container's 13px padding so content scrolls
     // under an opaque, full-width bar.
     margin: -13px -13px 13px;
-    padding: 13px;
+    padding: 10px 6px;
     background-color: v-bind('themeVars.bodyColor');
   }
 }
