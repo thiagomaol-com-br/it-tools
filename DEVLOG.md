@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-11] Internacionalização: Localização Padrão em Português, Carga Síncrona e Collação Alfabética
+
+### 1. Contexto
+A aplicação operava com o idioma inglês (`en`) como padrão no boot e carregava os demais idiomas de forma assíncrona. Essa defasagem causava corrida de renderização: os componentes montavam antes do carregamento das traduções em português, travando nomes desatualizados em memória. Além disso, o arquivo de tradução continha erros léxicos em categorias (como `markdown` traduzido como "Redução de preço", `web` e `network` traduzidos ambos como "Rede", e `finance` traduzido como o verbo "Financiar"), e a ordenação por `_.orderBy` (ASCII) posicionava incorretamente itens acentuados (ex.: "Códigos de barras" após "Cripto" e "Física" após "Forense").
+
+### 2. Decisão
+1. **Empacotamento Síncrono de Português:** Modificação em [src/plugins/i18n.plugin.ts](src/plugins/i18n.plugin.ts) para importar `ptBaseMessages` e arquivos de ferramentas de `pt.yml` de forma estática e síncrona junto com o inglês, definindo `DEFAULT_LOCALE = 'pt'`.
+2. **Configuração Global de Idioma:** Definição de `"default_locale": "pt"` em [public/tools-settings.json](public/tools-settings.json) e atualização de [index.html](index.html) para `<html lang="pt-BR">`.
+3. **Correção Léxica das Categorias:** Ajuste em [locales/pt.yml](locales/pt.yml) para manter `web` como "Web" (separada de "Rede"), `markdown` como "Markdown" e `finance` como "Finanças".
+4. **Ordenação com `Intl.Collator`:** Substituição de `_.orderBy` por `Intl.Collator(locale, { sensitivity: 'base', numeric: true })` em [src/tools/tools.store.ts](src/tools/tools.store.ts) e [src/pages/Home.page.vue](src/pages/Home.page.vue), assegurando ordenação alfabética natural para categorias e ferramentas acentuadas.
+
+### 3. Justificativa (Por quê)
+* O empacotamento síncrono garante que o dicionário de português esteja disponível no primeiro ciclo de montagem dos componentes, eliminando condições de corrida no Pinia.
+* A separação entre "Web" e "Rede" impede a fusão acidental de ferramentas de escopos distintos sob a mesma categoria.
+* A collação com `Intl.Collator` respeita as regras ortográficas da língua portuguesa, garantindo que letras com diacríticos sejam ordenadas corretamente no alfabeto.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Aplicação iniciando diretamente em português; menu lateral sem categorias fundidas e estritamente ordenado de A a Z; eliminação de termos incorretos no catálogo.
+* **Trade-offs:** O bundle inicial do app passa a incluir as mensagens de português junto às de inglês, com acréscimo desprezível de tamanho.
+
+---
+
 ## [2026-11-11] UX e Roteamento: Inversão Home/Sobre, Seções Retráteis e Título Universal
 
 ### 1. Contexto

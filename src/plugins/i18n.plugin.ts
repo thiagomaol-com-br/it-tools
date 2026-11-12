@@ -4,16 +4,18 @@ import type { Plugin } from 'vue';
 import { watch } from 'vue';
 import { createI18n } from 'vue-i18n';
 import enBaseMessages from '../../locales/en.yml';
+import ptBaseMessages from '../../locales/pt.yml';
 
-const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'en');
+const DEFAULT_LOCALE = String(import.meta.env.VITE_LANGUAGE || 'pt');
 const FALLBACK_LOCALE = 'en';
 
-// The fallback locale (and its tool-level files) is bundled eagerly so the app always has
+// The fallback locale (en) and primary default locale (pt) are bundled eagerly so the app always has
 // complete messages at startup; every other locale is compiled into its own lazy chunk and
 // only fetched the first time it becomes the active locale.
-const eagerToolMessages = import.meta.glob('../tools/*/locales/en.yml', { eager: true, import: 'default' });
-const lazyBaseMessages = import.meta.glob(['../../locales/*.yml', '!../../locales/en.yml'], { import: 'default' });
-const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml'], {
+const eagerToolMessagesEn = import.meta.glob('../tools/*/locales/en.yml', { eager: true, import: 'default' });
+const eagerToolMessagesPt = import.meta.glob('../tools/*/locales/pt.yml', { eager: true, import: 'default' });
+const lazyBaseMessages = import.meta.glob(['../../locales/*.yml', '!../../locales/en.yml', '!../../locales/pt.yml'], { import: 'default' });
+const lazyToolMessages = import.meta.glob(['../tools/*/locales/*.yml', '!../tools/*/locales/en.yml', '!../tools/*/locales/pt.yml'], {
   import: 'default',
 });
 
@@ -23,12 +25,13 @@ function localeOfPath(path: string): string {
 
 // Cast: es-toolkit's merge infers a deeply recursive mapped type from the full message
 // tree, which makes vue-i18n's generics exceed TS's instantiation depth.
-const enMessages = merge({}, enBaseMessages, ...Object.values(eagerToolMessages)) as Record<string, unknown>;
+const enMessages = merge({}, enBaseMessages, ...Object.values(eagerToolMessagesEn)) as Record<string, unknown>;
+const ptMessages = merge({}, ptBaseMessages, ...Object.values(eagerToolMessagesPt)) as Record<string, unknown>;
 
 // VITE_AVAILABLE_LOCALES filters which locales the app offers; unlisted locale chunks are
 // still emitted at build time but never fetched.
 export const appLocales = (() => {
-  const allLocales = [FALLBACK_LOCALE, ...Object.keys(lazyBaseMessages).map(localeOfPath)].sort();
+  const allLocales = Array.from(new Set([FALLBACK_LOCALE, 'pt', ...Object.keys(lazyBaseMessages).map(localeOfPath)])).sort();
   const available = String(import.meta.env.VITE_AVAILABLE_LOCALES || '*');
   if (available === '*' || available === 'all') {
     return allLocales;
@@ -45,10 +48,13 @@ const i18n = createI18n({
   missingWarn: false,
   // Cast: without the unplugin-vue-i18n type shim (absent in tsconfig.vitest.json)
   // vue-i18n's generics reject runtime-shaped message records.
-  messages: { [FALLBACK_LOCALE]: enMessages } as Record<string, any>,
+  messages: {
+    [FALLBACK_LOCALE]: enMessages,
+    pt: ptMessages,
+  } as Record<string, any>,
 });
 
-const loadedLocales = new Set([FALLBACK_LOCALE]);
+const loadedLocales = new Set([FALLBACK_LOCALE, 'pt']);
 
 export async function loadLocaleMessages(locale: string) {
   if (loadedLocales.has(locale)) {

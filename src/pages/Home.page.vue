@@ -17,7 +17,16 @@ const { t } = useI18n();
 
 const toolStore = useToolStore();
 const { favoriteToolsName } = storeToRefs(toolStore);
-const orderedTools = computed(() => _.orderBy(toolStore.tools, ['category', 'name'], ['asc', 'asc']));
+const orderedTools = computed(() => {
+  const collator = new Intl.Collator('pt-BR', { sensitivity: 'base', numeric: true });
+  return [...toolStore.tools].sort((a, b) => {
+    const catDiff = collator.compare(a.category, b.category);
+    if (catDiff !== 0) {
+      return catDiff;
+    }
+    return collator.compare(a.name, b.name);
+  });
+});
 
 const message = useMessage();
 const importFavoritesJson = ref('');
