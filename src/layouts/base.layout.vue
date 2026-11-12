@@ -106,16 +106,16 @@ const tools = computed<ToolCategory[]>(() => [
           </c-button>
         </c-tooltip>
 
-        <c-tooltip :tooltip="$t('home.toggleMenu')" position="bottom">
+        <c-tooltip tooltip="Menu" position="bottom">
           <c-button
             round
             variant="text"
             font-semibold
-            :aria-label="$t('home.toggleMenu')"
+            aria-label="Menu"
             @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
           >
             <NIcon size="19" :component="Menu2" mr-1 />
-            {{ $t('home.toggleMenu') }}
+            Menu
           </c-button>
         </c-tooltip>
 

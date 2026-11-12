@@ -3,7 +3,6 @@ import type { Component } from 'vue';
 import { NIcon, useThemeVars } from 'naive-ui';
 import IconCheck from '~icons/tabler/check';
 import IconDeviceDesktop from '~icons/tabler/device-desktop';
-import IconLanguage from '~icons/tabler/language';
 import IconMoon from '~icons/tabler/moon';
 import IconSun from '~icons/tabler/sun';
 import { appLocales } from '@/plugins/i18n.plugin';
@@ -82,23 +81,37 @@ const themeTriggerIcon = computed(() => (isDarkTheme.value ? IconMoon : IconSun)
 function onThemeSelect(key: 'auto' | 'light' | 'dark') {
   styleStore.themeMode = key;
 }
+
+const currentLocaleDisplay = computed(() => {
+  const code = String(locale.value || 'pt');
+  if (code.toLowerCase() === 'zh-tw') {
+    return 'TW';
+  }
+  return code.toUpperCase();
+});
 </script>
 
 <template>
+  <n-dropdown :options="languageOptions" trigger="click" @select="onLanguageSelect">
+    <c-button round variant="text" font-semibold :aria-label="t('home.nav.language', 'Idioma')">
+      <span class="locale-code">{{ currentLocaleDisplay }}</span>
+    </c-button>
+  </n-dropdown>
+
   <n-dropdown :options="themeOptions" trigger="click" @select="onThemeSelect">
     <c-button circle variant="text" :aria-label="t('home.nav.mode')">
       <n-icon size="25" :component="themeTriggerIcon" />
     </c-button>
   </n-dropdown>
-
-  <n-dropdown :options="languageOptions" trigger="click" @select="onLanguageSelect">
-    <c-button circle variant="text" :aria-label="t('home.nav.language', 'Language')">
-      <n-icon size="25" :component="IconLanguage" />
-    </c-button>
-  </n-dropdown>
 </template>
 
 <style lang="less" scoped>
+.locale-code {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
 .n-button {
   &:not(:last-child) {
     margin-right: 5px;
