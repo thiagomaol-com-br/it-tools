@@ -10,7 +10,7 @@
 
 ## 1. Fundamentos & Tokens Universais
 
-### 1.1. Tipografia
+### 1.1. Tipografia - [JÁ]
 * **Títulos e Destaques (Display/Headings):** `Space Grotesk` (pesos 600, 700 e 800).
 * **Corpo e Interface (Body/UI):** `Inter` (pesos 400, 500 e 600).
 * **Código e Valores Técnicos / Eyebrows (Mono):** `JetBrains Mono` ou `Fira Code`.
@@ -29,7 +29,7 @@
   * **Microcópias / Legendas:** `0.875rem` (14px).
   * **Eyebrow / Badges:** `0.75rem` (12px) em fonte mono, caixa alta e `letter-spacing: 0.05em`.
 
-### 1.2. Paleta de Cores e Superfícies — [PADRÃO APROVADO]
+### 1.2. Paleta de Cores e Superfícies — [PADRÃO APROVADO] - [JÁ]
 * **Cor Primária (Sotaque/Ação):** Laranja quente (`#F97415` / `hsl(25, 95%, 53%)`).
 * **Cor de Acento Secundário (Solarpunk Âmbar):**
   * `--color-amber`: `#F59E0B` (`hsl(38, 92%, 50%)`).
@@ -84,7 +84,7 @@
       ```
   * *Regra de Ouro:* Proibido empilhar múltiplas camadas animadas de 50% de opacidade no mobile que cubram a tela de laranja. O fundo deve respirar escuro (ou claro) com apenas um toque térmico difuso no topo.
 
-### 1.3. Mídias & Ícones Canônicos
+### 1.3. Mídias & Ícones Canônicos - [JÁ]
 
 A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para todas as mídias do ecossistema:
 
@@ -98,7 +98,7 @@ A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para
   * Traço (stroke-width): `1.75px` ou `2px` padronizado.
   * Tamanho base de exibição: `20px` (inline/botões) e `24px` (navbar).
 
-### 1.4. Geometria, Cantos e Elevações — [PADRÃO APROVADO]
+### 1.4. Geometria, Cantos e Elevações — [PADRÃO APROVADO] - [PARCIALMENTE]
 * **Raio de Borda (Border Radius):**
   * **Botões, Ações e Inputs:** `12px` (`0.75rem` / `var(--radius-md)`) — [PADRÃO APROVADO].
   * **Cards e Modais:** `16px` (`1rem` / `var(--radius-lg)`).
@@ -113,7 +113,7 @@ A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para
   * Duração padrão de hover/transição: `150ms` ou `200ms ease`.
   * Transição de microinterações de rotação (ícones): `300ms cubic-bezier(0.4, 0, 0.2, 1)`.
 
-### 1.5. Breakpoints e Responsividade
+### 1.5. Breakpoints e Responsividade - [JÁ]
 * **Breakpoints Oficiais:**
   * Mobile: `< 768px`
   * Tablet: `768px – 1023px`

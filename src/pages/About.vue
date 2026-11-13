@@ -71,12 +71,20 @@ useHead({
 
 <template>
   <div class="about-page">
-    <c-markdown :markdown="activeContent" mx-auto mt-50px />
+    <c-markdown :markdown="activeContent" />
   </div>
 </template>
 
 <style scoped lang="less">
 .about-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 16px 80px;
+
+  @media (max-width: 700px) {
+    padding: 10px 16px 60px;
+  }
+
   :deep(h1) {
     font-family: var(--font-heading), "Space Grotesk", sans-serif;
     font-size: clamp(2.5rem, 5.5vw, 4.25rem);

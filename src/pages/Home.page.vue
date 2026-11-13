@@ -369,8 +369,12 @@ onUnmounted(() => {
 // The 50px top spacing is a desktop nicety; on mobile it pushes the content
 // too far below the top bar.
 .home-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 16px 80px;
+
   @media (max-width: 700px) {
-    padding-top: 0;
+    padding: 0 4px 60px;
   }
 }
 
