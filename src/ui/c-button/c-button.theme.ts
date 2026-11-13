@@ -35,12 +35,12 @@ function createTheme({ style }: { style: 'light' | 'dark' }) {
         fontSize: '12px',
       },
       medium: {
-        width: '34px',
+        width: '36px',
         fontSize: '14px',
       },
       large: {
-        width: '40px',
-        fontSize: '16px',
+        width: '44px',
+        fontSize: '15px',
       },
     },
 

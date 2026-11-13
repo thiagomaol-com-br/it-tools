@@ -74,11 +74,11 @@ const size = computed(() => theme.value.size[sizeName.value]);
   cursor: pointer;
   text-decoration: none;
   height: v-bind('size.width');
-  font-weight: 400;
+  font-weight: 600;
   color: v-bind('variantTheme.textColor');
-  padding: 0 14px;
-  border-radius: 4px;
-  transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  padding: 0 18px;
+  border-radius: var(--radius-md, 12px);
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease, box-shadow 0.2s ease;
 
   background-color: v-bind('variantTheme.backgroundColor');
   display: inline-flex;
@@ -104,16 +104,23 @@ const size = computed(() => theme.value.size[sizeName.value]);
     @media (hover: hover) {
       &:hover {
         background-color: v-bind('variantTheme.hover.backgroundColor');
+        transform: translateY(-1px);
       }
     }
 
     &:active {
       background-color: v-bind('variantTheme.pressed.backgroundColor');
+      transform: translateY(0) scale(0.98);
     }
   }
 
-  &:focus {
-    outline: 1px solid v-bind('appTheme.primary.color');
+  &:focus-visible {
+    outline: 2px solid v-bind('appTheme.primary.color');
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 
   &.disabled {

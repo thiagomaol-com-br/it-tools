@@ -24,6 +24,19 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
     siderBorderColor: 'rgba(0, 0, 0, 0.08)',
   },
 
+  Button: {
+    borderRadiusMedium: '12px',
+    borderRadiusLarge: '12px',
+    heightMedium: '36px',
+    heightLarge: '44px',
+    fontWeight: '600',
+  },
+
+  Input: {
+    borderRadius: '12px',
+    heightMedium: '44px',
+  },
+
   Card: {
     color: '#FFFFFF',
     borderColor: 'rgba(0, 0, 0, 0.08)',
@@ -71,6 +84,19 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
     color: '#0A0A0A',
     siderColor: '#171717',
     siderBorderColor: 'rgba(255, 255, 255, 0.08)',
+  },
+
+  Button: {
+    borderRadiusMedium: '12px',
+    borderRadiusLarge: '12px',
+    heightMedium: '36px',
+    heightLarge: '44px',
+    fontWeight: '600',
+  },
+
+  Input: {
+    borderRadius: '12px',
+    heightMedium: '44px',
   },
 
   Card: {

@@ -374,9 +374,13 @@ defineExpose({
     background-color: v-bind('theme.backgroundColor');
     color: transparent;
     border: 1px solid v-bind('theme.borderColor');
-    border-radius: 4px;
-    padding: 0 4px 0 12px;
-    transition: border-color 0.2s ease-in-out;
+    border-radius: var(--radius-md, 12px);
+    padding: 0 4px 0 14px;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    .c-input-text:not(.multiline) & {
+      min-height: 44px;
+    }
 
     .multiline& {
       resize: vertical;
@@ -464,6 +468,7 @@ defineExpose({
 
     &:focus-within {
       border-color: v-bind('appTheme.primary.color');
+      box-shadow: 0 0 0 3px rgba(249, 116, 21, 0.16);
 
       background-color: v-bind('theme.focus.backgroundColor');
     }
