@@ -271,7 +271,7 @@ O ecossistema adota a mesma estética e tipografia no rodapé, mas **cada aplica
 
 ---
 
-## 3. Anatomia de Páginas & Seções - [NENHUM PROCESSADO, por enquanto]
+## 3. Anatomia de Páginas & Seções
 
 ### 3.1. Seção Principal (Hero Section) — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Alinhamento Editorial Universal (Opção A):**
