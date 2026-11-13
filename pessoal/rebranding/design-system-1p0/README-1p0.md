@@ -10,7 +10,7 @@
 
 ## 1. Fundamentos & Tokens Universais
 
-### 1.1. Tipografia - [JÁ]
+### 1.1. Tipografia - [JÁ lido/analisado]
 * **Títulos e Destaques (Display/Headings):** `Space Grotesk` (pesos 600, 700 e 800).
 * **Corpo e Interface (Body/UI):** `Inter` (pesos 400, 500 e 600).
 * **Código e Valores Técnicos / Eyebrows (Mono):** `JetBrains Mono` ou `Fira Code`.
@@ -29,7 +29,7 @@
   * **Microcópias / Legendas:** `0.875rem` (14px).
   * **Eyebrow / Badges:** `0.75rem` (12px) em fonte mono, caixa alta e `letter-spacing: 0.05em`.
 
-### 1.2. Paleta de Cores e Superfícies — [PADRÃO APROVADO] - [JÁ]
+### 1.2. Paleta de Cores e Superfícies — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Cor Primária (Sotaque/Ação):** Laranja quente (`#F97415` / `hsl(25, 95%, 53%)`).
 * **Cor de Acento Secundário (Solarpunk Âmbar):**
   * `--color-amber`: `#F59E0B` (`hsl(38, 92%, 50%)`).
@@ -84,7 +84,7 @@
       ```
   * *Regra de Ouro:* Proibido empilhar múltiplas camadas animadas de 50% de opacidade no mobile que cubram a tela de laranja. O fundo deve respirar escuro (ou claro) com apenas um toque térmico difuso no topo.
 
-### 1.3. Mídias & Ícones Canônicos - [JÁ]
+### 1.3. Mídias & Ícones Canônicos - [JÁ lido/analisado]
 
 A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para todas as mídias do ecossistema:
 
@@ -98,7 +98,7 @@ A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para
   * Traço (stroke-width): `1.75px` ou `2px` padronizado.
   * Tamanho base de exibição: `20px` (inline/botões) e `24px` (navbar).
 
-### 1.4. Geometria, Cantos e Elevações — [PADRÃO APROVADO] - [PARCIALMENTE]
+### 1.4. Geometria, Cantos e Elevações — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Raio de Borda (Border Radius):**
   * **Botões, Ações e Inputs:** `12px` (`0.75rem` / `var(--radius-md)`) — [PADRÃO APROVADO].
   * **Cards e Modais:** `16px` (`1rem` / `var(--radius-lg)`).
@@ -113,7 +113,7 @@ A pasta [`design-system/assets/`](assets/) é a **fonte única de verdade** para
   * Duração padrão de hover/transição: `150ms` ou `200ms ease`.
   * Transição de microinterações de rotação (ícones): `300ms cubic-bezier(0.4, 0, 0.2, 1)`.
 
-### 1.5. Breakpoints e Responsividade - [JÁ]
+### 1.5. Breakpoints e Responsividade - [JÁ lido/analisado]
 * **Breakpoints Oficiais:**
   * Mobile: `< 768px`
   * Tablet: `768px – 1023px`
@@ -271,9 +271,9 @@ O ecossistema adota a mesma estética e tipografia no rodapé, mas **cada aplica
 
 ---
 
-## 3. Anatomia de Páginas & Seções
+## 3. Anatomia de Páginas & Seções - [NENHUM PROCESSADO, por enquanto]
 
-### 3.1. Seção Principal (Hero Section) — [PADRÃO APROVADO]
+### 3.1. Seção Principal (Hero Section) — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Alinhamento Editorial Universal (Opção A):**
   * **Alinhamento estrito à Esquerda:** Eyebrow, manchete H1, subtítulo, botões e badges partem rigorosamente da margem esquerda.
   * Todas as seções internas de todas as páginas mantêm essa mesma continuidade de leitura à esquerda (elimina a estética de landing page centralizada genérica).
@@ -312,7 +312,7 @@ O ecossistema adota a mesma estética e tipografia no rodapé, mas **cada aplica
   * Desktop: `padding-top: var(--space-3xl, 4rem); padding-bottom: var(--space-2xl, 3rem);`
   * Mobile: `padding-top: var(--space-xl, 2rem); padding-bottom: var(--space-lg, 1.5rem);`
 
-### 3.2. Cards e Contêineres de Conteúdo — [PADRÃO APROVADO]
+### 3.2. Cards e Contêineres de Conteúdo — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Card de Vidro (`GlassCard.astro`):**
   * Raio de curvatura padrão: `16px` (`1rem` / `var(--radius-lg)`).
   * Espaçamento interno padrão (Padding): `24px` (`var(--space-xl)`), reduzindo para `16px` (`var(--space-lg)`) em telas compactas.
@@ -332,7 +332,7 @@ O ecossistema adota a mesma estética e tipografia no rodapé, mas **cada aplica
   * Largura máxima padrão: `72rem` (1152px / `var(--container-6xl)`).
   * Margens laterais (Padding inline): `24px` no desktop e `16px` no mobile (`max-width: 640px`). Nenhum elemento encosta na borda da tela.
 
-### 3.3. Botões e Ações (CTAs) — [PADRÃO APROVADO]
+### 3.3. Botões e Ações (CTAs) — [PADRÃO APROVADO] - [JÁ lido/analisado]
 * **Geometria & Toque:**
   * Altura mínima: `44px` (área touch ideal para dispositivos móveis).
   * Raio de curvatura: `12px` (`0.75rem` / `var(--radius-md)`) — [PADRÃO APROVADO].
@@ -359,14 +359,14 @@ O ecossistema adota a mesma estética e tipografia no rodapé, mas **cada aplica
     * Fundo: transparente.
     * Hover: `background: var(--color-surface);`.
 
-### 3.4. Formulários, Inputs e Modais
+### 3.4. Formulários, Inputs e Modais - [JÁ lido/analisado]
 * Altura padronizada de inputs: `44px` (igual aos botões para alinhamento em grid).
 * Raio de curvatura: `12px` (`0.75rem`).
 * Estados visuais: Padrão, Foco (anel laranja suave), Erro e Desabilitado.
 
 ---
 
-## 4. Matriz de Coleta (O que aproveitar de cada base atual)
+## 4. Matriz de Coleta (O que aproveitar de cada base atual) - [REFERÊNCIA - não aplicável]
 
 > *Nesta seção vamos documentar o que cada projeto já tem de melhor para integrar ao padrão global.*
 

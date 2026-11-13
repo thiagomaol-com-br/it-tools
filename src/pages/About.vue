@@ -79,10 +79,15 @@ useHead({
 .about-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 40px 16px 80px;
+  padding: 4rem 16px 3rem;
 
   @media (max-width: 700px) {
-    padding: 10px 16px 60px;
+    padding: 2rem 16px 2rem;
+  }
+
+  :deep(.accent-text) {
+    color: #f97415;
+    font-weight: 800;
   }
 
   :deep(h1) {
