@@ -174,21 +174,20 @@ const themeVars = useThemeVars();
       flex
       cursor-pointer
       items-center
-      op-60
       @click="toggleCategoryCollapse({ name })"
     >
       <span
         :class="{ 'rotate-0': collapsedCategories[name], 'rotate-90': !collapsedCategories[name] }"
-        text-16px
+        text-17px
         lh-1
-        op-50
+        op-70
         transition-transform
         duration-200
       >
         <icon-mdi-chevron-right />
       </span>
 
-      <span ml-8px text-13px>
+      <span ml-8px text-14px font-semibold>
         {{ name }}
       </span>
     </button>
@@ -224,17 +223,19 @@ const themeVars = useThemeVars();
 .category-button {
   border: none;
   background: transparent;
-  padding: 6px;
+  padding: 8px 10px;
   width: 100%;
   color: v-bind('themeVars.textColor1');
   text-align: left;
   user-select: none;
+  border-radius: var(--radius-sm, 6px);
+  transition: all 0.15s ease;
 
   // Hover only on hover-capable devices; on touch it sticks after tapping
   @media (hover: hover) {
     &:hover {
       background-color: v-bind('themeVars.buttonColor2Hover');
-      opacity: 0.8;
+      color: v-bind('themeVars.primaryColor');
     }
   }
 

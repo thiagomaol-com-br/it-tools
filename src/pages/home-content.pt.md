@@ -99,7 +99,7 @@ Se você precisa de uma ferramenta específica (gestão de chamados, documentaç
   <li class="icon-list-item">
     <span class="icon-badge icon-badge--step" aria-hidden="true">1</span>
     <div class="icon-list-content">
-      <strong>Envie a sua demanda por escrito:</strong> detalhe o que precisa pela página de [Solicitar Solução ↗](https://thiagomaol.com.br/solicitar-solucao/) no meu site ou mande um e-mail em **thiagomaol@gmail.com**.
+      <strong>Envie a sua demanda por escrito:</strong> detalhe o que precisa pela página de <a href="https://thiagomaol.com.br/solicitar-solucao/" target="_blank" rel="noopener">Solicitar Solução ↗</a> no meu site ou mande um e-mail em <strong>thiagomaol@gmail.com</strong>.
     </div>
   </li>
   <li class="icon-list-item">

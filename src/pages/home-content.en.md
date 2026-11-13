@@ -99,7 +99,7 @@ If you need a specific system (ticketing, internal documentation, automation, di
   <li class="icon-list-item">
     <span class="icon-badge icon-badge--step" aria-hidden="true">1</span>
     <div class="icon-list-content">
-      <strong>Send your requirements in writing:</strong> detail what you need on the [Request a Solution ↗](https://thiagomaol.com.br/solicitar-solucao/) page on my website or email me at **thiagomaol@gmail.com**.
+      <strong>Send your requirements in writing:</strong> detail what you need on the <a href="https://thiagomaol.com.br/solicitar-solucao/" target="_blank" rel="noopener">Request a Solution ↗</a> page on my website or email me at <strong>thiagomaol@gmail.com</strong>.
     </div>
   </li>
   <li class="icon-list-item">

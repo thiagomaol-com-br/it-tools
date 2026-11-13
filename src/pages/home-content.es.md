@@ -99,7 +99,7 @@ Si necesita una herramienta específica (gestión de incidencias, documentación
   <li class="icon-list-item">
     <span class="icon-badge icon-badge--step" aria-hidden="true">1</span>
     <div class="icon-list-content">
-      <strong>Envíe su solicitud por escrito:</strong> detalle lo que necesita a través de la página de [Solicitar Solución ↗](https://thiagomaol.com.br/solicitar-solucao/) en mi sitio web o envíeme un correo electrónico a **thiagomaol@gmail.com**.
+      <strong>Envíe su solicitud por escrito:</strong> detalle lo que necesita a través de la página de <a href="https://thiagomaol.com.br/solicitar-solucao/" target="_blank" rel="noopener">Solicitar Solución ↗</a> en mi sitio web o envíeme un correo electrónico a <strong>thiagomaol@gmail.com</strong>.
     </div>
   </li>
   <li class="icon-list-item">

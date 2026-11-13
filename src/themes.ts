@@ -14,7 +14,8 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
   },
 
   Menu: {
-    itemHeight: '32px',
+    itemHeight: '34px',
+    fontSize: '14px',
   },
 
   Layout: {
@@ -62,7 +63,8 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   },
 
   Menu: {
-    itemHeight: '32px',
+    itemHeight: '34px',
+    fontSize: '14px',
   },
 
   Layout: {

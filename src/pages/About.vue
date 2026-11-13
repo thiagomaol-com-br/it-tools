@@ -99,6 +99,15 @@ useHead({
     margin-bottom: 1.5rem;
   }
 
+  :deep(h1 + p) {
+    font-family: var(--font-body), "Inter", sans-serif;
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    color: #a6a6a6;
+    max-width: 44rem;
+    margin-bottom: 2rem;
+  }
+
   :deep(h2) {
     font-family: var(--font-heading), "Space Grotesk", sans-serif;
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -111,8 +120,13 @@ useHead({
 
   :deep(p),
   :deep(li) {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+
+    @media (max-width: 700px) {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
   }
 
   :deep(.icon-list) {
@@ -167,6 +181,16 @@ useHead({
   :deep(.icon-list-content) {
     flex: 1;
     line-height: 1.6;
+
+    a {
+      color: #f97415;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   :deep(kbd) {
@@ -187,5 +211,9 @@ useHead({
     border-radius: 0 6px 6px 0;
     margin: 1.5rem 0;
   }
+}
+
+:global(html:not(.dark)) .about-page :deep(h1 + p) {
+  color: #595959;
 }
 </style>
