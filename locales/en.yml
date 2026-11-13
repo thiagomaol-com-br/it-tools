@@ -64,8 +64,8 @@ favoriteButton:
 toolCard:
   new: New
 search:
-  label: Search tool... (e.g. text, password, json)
-  placeholder: Search tool... (e.g. text, password, json)
+  label: "Search tool... (e.g. text, password, json)"
+  placeholder: "Search tool... (e.g. text, password, json)"
 spanCopyable:
   copy: Copy to clipboard
   copied: Copied!

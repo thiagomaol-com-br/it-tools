@@ -25,7 +25,11 @@ const theme = useTheme();
   border: 1px solid v-bind('theme.borderColor');
   box-shadow: v-bind('theme.boxShadow');
   border-radius: var(--radius-lg, 16px);
-  padding: 20px 24px;
+  padding: 24px;
+
+  @media (max-width: 700px) {
+    padding: 16px;
+  }
 
   &-title {
     font-size: 16px;

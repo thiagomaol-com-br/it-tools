@@ -347,22 +347,47 @@ onUnmounted(() => {
 
 <style scoped lang="less">
 .collapsible-card {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-lg, 16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+  &:hover {
+    border-color: var(--color-amber-border, hsla(38, 92%, 50%, 0.45)) !important;
+  }
 
   :deep(.n-card-header) {
     cursor: pointer;
     user-select: none;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding: 14px 24px;
     transition: background-color 0.15s ease;
+
+    @media (max-width: 700px) {
+      padding: 12px 16px;
+    }
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.03);
     }
   }
 
+  :deep(.n-card__content) {
+    padding: 0 24px 24px;
+
+    @media (max-width: 700px) {
+      padding: 0 16px 16px;
+    }
+  }
+
   .collapsible-title {
     font-weight: 600;
+  }
+}
+
+:global(html:not(.dark)) .collapsible-card {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+
+  &:hover {
+    border-color: hsla(38, 92%, 40%, 0.4) !important;
   }
 }
 

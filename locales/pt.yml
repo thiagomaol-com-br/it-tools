@@ -108,8 +108,8 @@ favoriteButton:
 toolCard:
   new: Novo
 search:
-  label: Buscar ferramenta... (ex: texto, senha, json)
-  placeholder: Buscar ferramenta... (ex: texto, senha, json)
+  label: "Buscar ferramenta... (ex: texto, senha, json)"
+  placeholder: "Buscar ferramenta... (ex: texto, senha, json)"
 tools:
   crop-image:
     title: Recortar imagem
