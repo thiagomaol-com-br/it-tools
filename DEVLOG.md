@@ -4,6 +4,26 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-14] Design System: Barra Superior com Vidro Vivo Saturado, Sombra 3D e CTA Solarpunk
+
+### 1. Contexto
+A barra superior operava estaticamente sem profundidade no desktop, perdendo o efeito tridimensional de sobreposição sobre o conteúdo em rolagem. Além disso, a alternância de tema entre Sol e Lua não possuía transição de rotação fluida, e o CTA principal utilizava cor fixa sem a escala cromática do Design System 1.0.
+
+### 2. Decisão
+1. **Glassmorphism Saturado e Sombra 3D ([src/layouts/base.layout.vue](src/layouts/base.layout.vue)):** Implementação de barra suspensa fixa (`sticky top-0`, `z-index: 100`) com `backdrop-filter: blur(16px) saturate(160%)` e oclusão ambiental de alta densidade no Dark Mode (`0 10px 30px -5px rgba(0, 0, 0, 0.8)`) e suave no Light Mode (`0 4px 24px rgba(0, 0, 0, 0.08)`).
+2. **Animação Fluida Sol/Lua ([src/components/NavbarButtons.vue](src/components/NavbarButtons.vue)):** Microinteração canônica em `300ms cubic-bezier(0.4, 0, 0.2, 1)` com rotação e escala na transição de tema.
+3. **Cromática Solarpunk no CTA "Solicitar Solução" ([src/layouts/base.layout.vue](src/layouts/base.layout.vue)):** Adoção da Opção A com gradiente vibrante a 135° e texto `#0A0A0A` no Dark Mode, e gradiente profundo com texto branco `#FFFFFF` no Light Mode, preservando o formato compacto no mobile.
+
+### 3. Justificativa (Por quê)
+* O efeito saturated glassmorphism faz os elementos e cores passarem sob o cabeçalho com elegância, conferindo acabamento de aplicação moderna de alta fidelidade.
+* O contraste de texto escuro `#0A0A0A` sobre laranja vibrante no tema escuro atende aos critérios mais estritos de legibilidade e impacto visual do Playbook.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Sensação física de profundidade (eixo Z); transições suaves entre temas; CTA institucional perfeitamente integrado ao ecossistema da marca.
+* **Trade-offs:** A barra consome uma faixa de 100% da largura superior com sobreposição física, exigindo z-index superior a elementos flutuantes de conteúdo.
+
+---
+
 ## [2026-11-12] Design System: Geometria de Cantos Suavizados (Opção B) e Elevações Solarpunk
 
 ### 1. Contexto

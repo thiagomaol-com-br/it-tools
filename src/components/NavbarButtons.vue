@@ -57,8 +57,6 @@ function onLanguageSelect(key: string) {
   locale.value = key;
 }
 
-const themeTriggerIcon = computed(() => (isDarkTheme.value ? IconMoon : IconSun));
-
 const themeTooltip = computed(() => {
   if (locale.value === 'pt') {
     return isDarkTheme.value ? 'Mudar para modo claro' : 'Mudar para modo escuro';
@@ -94,7 +92,10 @@ const currentLocaleDisplay = computed(() => {
       :aria-label="themeTooltip"
       @click="styleStore.toggleDark()"
     >
-      <n-icon size="20" :component="themeTriggerIcon" />
+      <div class="theme-icon-container">
+        <IconSun class="theme-svg-icon icon-sun" :class="{ active: !styleStore.isDarkTheme }" />
+        <IconMoon class="theme-svg-icon icon-moon" :class="{ active: styleStore.isDarkTheme }" />
+      </div>
     </c-button>
   </c-tooltip>
 </template>
@@ -111,6 +112,46 @@ const currentLocaleDisplay = computed(() => {
   height: 34px !important;
   padding: 0 !important;
   border-radius: var(--radius-sm, 6px) !important;
+  position: relative;
+}
+
+.theme-icon-container {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.theme-svg-icon {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.icon-sun {
+    opacity: 0;
+    transform: scale(0.65) rotate(-90deg);
+
+    &.active {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  &.icon-moon {
+    opacity: 0;
+    transform: scale(0.65) rotate(90deg);
+
+    &.active {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
 }
 
 .locale-code {

@@ -220,14 +220,16 @@ const solutionButtonMobileLabel = computed(() => {
 }
 
 .solution-button {
-  background-color: #f97415 !important;
-  color: #ffffff !important;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 13px;
   border-radius: var(--radius-md, 12px) !important;
-  border: 1px solid #f97415;
   transition: all 0.2s ease !important;
-  box-shadow: 0 2px 8px rgba(249, 116, 21, 0.25);
+
+  // Dark Mode Solarpunk CTA (Padrão Canônico)
+  background: linear-gradient(135deg, hsl(25, 95%, 56%), hsl(25, 95%, 47%)) !important;
+  color: #0a0a0a !important;
+  border: 1px solid hsla(25, 95%, 65%, 0.4) !important;
+  box-shadow: 0 2px 14px -2px hsla(25, 95%, 50%, 0.45);
 
   @media (max-width: 700px) {
     padding-left: 10px !important;
@@ -236,16 +238,34 @@ const solutionButtonMobileLabel = computed(() => {
   }
 
   &:hover {
-    background-color: #ea580c !important;
-    border-color: #ea580c !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(249, 116, 21, 0.4);
+    color: #0a0a0a !important;
     transform: translateY(-1px);
+    box-shadow: 0 4px 20px -2px hsla(25, 95%, 50%, 0.65);
+    filter: brightness(1.08);
   }
 
   &:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(249, 116, 21, 0.3);
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 6px hsla(25, 95%, 50%, 0.4);
+  }
+}
+
+:global(html:not(.dark)) .solution-button {
+  background: linear-gradient(135deg, hsl(25, 95%, 46%), hsl(25, 95%, 39%)) !important;
+  color: #ffffff !important;
+  border: 1px solid hsla(25, 95%, 55%, 0.3) !important;
+  box-shadow: 0 2px 10px -2px hsla(25, 95%, 45%, 0.35);
+
+  &:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px -2px hsla(25, 95%, 45%, 0.5);
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 4px hsla(25, 95%, 45%, 0.3);
   }
 }
 
@@ -313,19 +333,35 @@ const solutionButtonMobileLabel = computed(() => {
   );
 }
 
-// Mobile: the top bar stays visible while scrolling, and the full-width menu
-// (see MenuLayout.vue) opens right under it.
+// Sticky Navbar com Glassmorphism e Sombra 3D (Design System 1.0)
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  // Dark Mode Glassmorphism & Sombra 3D
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+
+  margin: -26px -26px 20px;
+  padding: 10px 26px;
+
   @media (max-width: 700px) {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    // Bleed over the scroll container's 13px padding so content scrolls
-    // under an opaque, full-width bar.
     margin: -13px -13px 13px;
-    padding: 10px 6px;
-    background-color: v-bind('themeVars.bodyColor');
+    padding: 10px 8px;
   }
+}
+
+:global(html:not(.dark)) .navbar {
+  background: rgba(248, 250, 252, 0.82);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 
 .hero-wrapper {
