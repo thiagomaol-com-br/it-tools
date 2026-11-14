@@ -3,8 +3,10 @@ import { useHead } from '@vueuse/head';
 import homeContentPt from './home-content.pt.md?raw';
 import homeContentEs from './home-content.es.md?raw';
 import homeContentEn from './home-content.en.md?raw';
+import { useStyleStore } from '@/stores/style.store';
 
 const { locale } = useI18n();
+const styleStore = useStyleStore();
 
 const title = 'Thiago Maol. | Ferramentas';
 const descPt =
@@ -70,7 +72,7 @@ useHead({
 </script>
 
 <template>
-  <div class="about-page">
+  <div class="about-page" :class="{ 'is-dark': styleStore.isDarkTheme }">
     <c-markdown :markdown="activeContent" />
   </div>
 </template>
@@ -103,9 +105,15 @@ useHead({
     font-family: var(--font-body), "Inter", sans-serif;
     font-size: clamp(1.125rem, 2vw, 1.25rem);
     line-height: 1.6;
-    color: #a6a6a6;
+    color: #4b5563;
     max-width: 44rem;
     margin-bottom: 2rem;
+  }
+
+  &.is-dark {
+    :deep(h1 + p) {
+      color: #a6a6a6;
+    }
   }
 
   :deep(h2) {
@@ -211,9 +219,5 @@ useHead({
     border-radius: 0 6px 6px 0;
     margin: 1.5rem 0;
   }
-}
-
-:global(html:not(.dark)) .about-page :deep(h1 + p) {
-  color: #595959;
 }
 </style>
