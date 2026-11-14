@@ -184,7 +184,7 @@ const solutionButtonMobileLabel = computed(() => {
       <!-- Positioned wrapper so the route-change loading overlay (see router.ts)
            can cover just the page, leaving the nav bar and menu visible. -->
       <div class="page-content">
-        <div v-if="styleStore.isDarkTheme" class="aurora-glow" aria-hidden="true" />
+        <div class="aurora-glow" :class="{ 'is-dark': styleStore.isDarkTheme }" aria-hidden="true" />
         <div class="page-inner">
           <slot />
           <AppFooter />
@@ -326,23 +326,50 @@ const solutionButtonMobileLabel = computed(() => {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 60rem;
-  height: 20rem;
+  max-width: 65rem;
+  height: 24rem;
   pointer-events: none;
   z-index: 0;
   filter: blur(50px);
   overflow: hidden;
+
+  // Modo Claro e Modo Escuro: 12% no centro esmaecendo para 6% e transparente a 70%
   background: radial-gradient(
     ellipse at 50% 0%,
-    hsla(25, 95%, 53%, 0.1) 0%,
-    hsla(50, 95%, 50%, 0.04) 40%,
+    hsla(25, 95%, 53%, 0.12) 0%,
+    hsla(50, 95%, 50%, 0.06) 40%,
     transparent 70%
   );
 
+  &.is-dark {
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      hsla(25, 95%, 53%, 0.12) 0%,
+      hsla(50, 95%, 50%, 0.06) 40%,
+      transparent 70%
+    );
+  }
+
   @media (max-width: 700px) {
-    height: 14rem;
+    height: 18rem;
+    max-width: 32rem;
     filter: blur(35px);
-    opacity: 0.7;
+
+    background: radial-gradient(
+      ellipse at 50% 0%,
+      hsla(25, 95%, 53%, 0.12) 0%,
+      hsla(50, 95%, 50%, 0.06) 40%,
+      transparent 70%
+    );
+
+    &.is-dark {
+      background: radial-gradient(
+        ellipse at 50% 0%,
+        hsla(25, 95%, 53%, 0.12) 0%,
+        hsla(50, 95%, 50%, 0.06) 40%,
+        transparent 70%
+      );
+    }
   }
 }
 
