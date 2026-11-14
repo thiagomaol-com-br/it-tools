@@ -106,7 +106,7 @@ const solutionButtonMobileLabel = computed(() => {
     </template>
 
     <template #content>
-      <div ref="navbarRef" class="navbar" flex items-center justify-center gap-1.5 sm:gap-2>
+      <div ref="navbarRef" class="navbar" :class="{ 'is-dark': styleStore.isDarkTheme }" flex items-center justify-center gap-1.5 sm:gap-2>
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
           <c-button
             to="/"
@@ -172,6 +172,7 @@ const solutionButtonMobileLabel = computed(() => {
             rel="noopener noreferrer"
             target="_blank"
             class="solution-button"
+            :class="{ 'is-dark': styleStore.isDarkTheme }"
             :bordered="false"
             :aria-label="solutionButtonLabel"
           >
@@ -183,7 +184,7 @@ const solutionButtonMobileLabel = computed(() => {
       <!-- Positioned wrapper so the route-change loading overlay (see router.ts)
            can cover just the page, leaving the nav bar and menu visible. -->
       <div class="page-content">
-        <div class="aurora-glow" aria-hidden="true" />
+        <div v-if="styleStore.isDarkTheme" class="aurora-glow" aria-hidden="true" />
         <div class="page-inner">
           <slot />
           <AppFooter />
@@ -222,36 +223,17 @@ const solutionButtonMobileLabel = computed(() => {
   border-radius: var(--radius-md, 12px) !important;
   transition: all 0.2s ease !important;
 
-  // Dark Mode Solarpunk CTA (Padrão Canônico)
-  background: linear-gradient(135deg, hsl(25, 95%, 56%), hsl(25, 95%, 47%)) !important;
-  color: #0a0a0a !important;
-  border: 1px solid hsla(25, 95%, 65%, 0.4) !important;
-  box-shadow: 0 2px 14px -2px hsla(25, 95%, 50%, 0.45);
+  // Default: Light Mode Solarpunk CTA (Padrão Canônico)
+  background: linear-gradient(135deg, hsl(25, 95%, 46%), hsl(25, 95%, 39%)) !important;
+  color: #ffffff !important;
+  border: 1px solid hsla(25, 95%, 55%, 0.3) !important;
+  box-shadow: 0 2px 10px -2px hsla(25, 95%, 45%, 0.35);
 
   @media (max-width: 700px) {
     padding-left: 10px !important;
     padding-right: 10px !important;
     font-size: 12px;
   }
-
-  &:hover {
-    color: #0a0a0a !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px -2px hsla(25, 95%, 50%, 0.65);
-    filter: brightness(1.08);
-  }
-
-  &:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 1px 6px hsla(25, 95%, 50%, 0.4);
-  }
-}
-
-:global(html:not(.dark)) .solution-button {
-  background: linear-gradient(135deg, hsl(25, 95%, 46%), hsl(25, 95%, 39%)) !important;
-  color: #ffffff !important;
-  border: 1px solid hsla(25, 95%, 55%, 0.3) !important;
-  box-shadow: 0 2px 10px -2px hsla(25, 95%, 45%, 0.35);
 
   &:hover {
     color: #ffffff !important;
@@ -263,6 +245,26 @@ const solutionButtonMobileLabel = computed(() => {
   &:active {
     transform: translateY(0) scale(0.98);
     box-shadow: 0 1px 4px hsla(25, 95%, 45%, 0.3);
+  }
+
+  // Dark Mode Solarpunk CTA (Padrão Canônico)
+  &.is-dark {
+    background: linear-gradient(135deg, hsl(25, 95%, 56%), hsl(25, 95%, 47%)) !important;
+    color: #0a0a0a !important;
+    border: 1px solid hsla(25, 95%, 65%, 0.4) !important;
+    box-shadow: 0 2px 14px -2px hsla(25, 95%, 50%, 0.45);
+
+    &:hover {
+      color: #0a0a0a !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px -2px hsla(25, 95%, 50%, 0.65);
+      filter: brightness(1.08);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 1px 6px hsla(25, 95%, 50%, 0.4);
+    }
   }
 }
 
@@ -319,40 +321,29 @@ const solutionButtonMobileLabel = computed(() => {
 }
 
 .aurora-glow {
-  position: fixed;
-  top: -20%;
+  position: absolute;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80rem;
-  height: 40rem;
+  width: 100%;
+  max-width: 60rem;
+  height: 20rem;
   pointer-events: none;
   z-index: 0;
-  filter: blur(60px);
-
-  // Dark mode Aurora Glow
+  filter: blur(50px);
+  overflow: hidden;
   background: radial-gradient(
-    ellipse at center,
-    hsla(25, 95%, 53%, 0.12) 0%,
-    hsla(50, 95%, 50%, 0.06) 40%,
+    ellipse at 50% 0%,
+    hsla(25, 95%, 53%, 0.1) 0%,
+    hsla(50, 95%, 50%, 0.04) 40%,
     transparent 70%
   );
 
   @media (max-width: 700px) {
-    top: -10%;
-    width: 32rem;
-    height: 22rem;
-    filter: blur(40px);
-    opacity: 0.8;
+    height: 14rem;
+    filter: blur(35px);
+    opacity: 0.7;
   }
-}
-
-:global(html:not(.dark)) .aurora-glow {
-  background: radial-gradient(
-    ellipse at center,
-    hsla(25, 95%, 53%, 0.05) 0%,
-    hsla(50, 95%, 50%, 0.02) 40%,
-    transparent 70%
-  );
 }
 
 // Sticky Navbar com Glassmorphism e Sombra 3D (Design System 1.0)
@@ -362,12 +353,12 @@ const solutionButtonMobileLabel = computed(() => {
   z-index: 100;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
-  // Dark Mode Glassmorphism & Sombra 3D
-  background: rgba(10, 10, 10, 0.72);
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+  // Default: Modo Claro (Light Mode) - Fundo claro e sombra suave difusa
+  background: rgba(248, 250, 252, 0.88);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 
   margin: -26px -26px 20px;
   padding: 10px 26px;
@@ -376,14 +367,15 @@ const solutionButtonMobileLabel = computed(() => {
     margin: -13px -13px 13px;
     padding: 10px 8px;
   }
-}
 
-:global(html:not(.dark)) .navbar {
-  background: rgba(248, 250, 252, 0.82);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  // Override: Modo Escuro (Dark Mode) - Vidro escuro e sombra 3D de alta oclusão
+  &.is-dark {
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .hero-wrapper {

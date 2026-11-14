@@ -7,7 +7,7 @@ import { useStyleStore } from '@/stores/style.store';
 
 const route = useRoute();
 const styleStore = useStyleStore();
-const { t, locale } = useI18n();
+const { locale } = useI18n();
 
 // Opção A aprovada: chamada de conversão na Home (/) e Catálogo (/ferramentas),
 // e rodapé compacto nas ferramentas individuais para não atrapalhar o uso técnico.
@@ -45,7 +45,7 @@ const officialPhrase = computed(() => {
 </script>
 
 <template>
-  <footer class="app-footer">
+  <footer class="app-footer" :class="{ 'is-dark': styleStore.isDarkTheme }">
     <div class="footer-container">
       <!-- Bloco de Conversão (Apenas na Home e no Catálogo, conforme Opção A) -->
       <div v-if="!isToolPage" class="conversion-block">
@@ -58,6 +58,7 @@ const officialPhrase = computed(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="solution-button"
+            :class="{ 'is-dark': styleStore.isDarkTheme }"
             :aria-label="ctaLabel"
           >
             {{ ctaLabel }}
@@ -108,7 +109,7 @@ const officialPhrase = computed(() => {
 <style scoped lang="less">
 .app-footer {
   margin-top: 4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding: 3rem 1rem 2.5rem;
   transition: border-color 0.2s ease;
   position: relative;
@@ -123,8 +124,8 @@ const officialPhrase = computed(() => {
   }
 
   .conversion-block {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-lg, 16px);
     padding: 1.75rem 2rem;
     display: flex;
@@ -143,7 +144,7 @@ const officialPhrase = computed(() => {
       margin: 0;
       font-size: 1rem;
       line-height: 1.6;
-      color: #e5e5e5;
+      color: #1a1a1a;
       flex: 1;
     }
 
@@ -177,7 +178,7 @@ const officialPhrase = computed(() => {
       margin: 0;
       font-size: 0.9375rem;
       line-height: 1.5;
-      color: #a6a6a6;
+      color: #595959;
       max-width: 38rem;
     }
   }
@@ -189,9 +190,9 @@ const officialPhrase = computed(() => {
     flex-wrap: wrap;
     gap: 1rem;
     padding-top: 1.25rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     font-size: 0.875rem;
-    color: #838587;
+    color: #595959;
 
     @media (max-width: 700px) {
       flex-direction: column;
@@ -219,7 +220,7 @@ const officialPhrase = computed(() => {
       .author-name {
         font-family: var(--font-heading), "Space Grotesk", sans-serif;
         font-weight: 700;
-        color: #e5e5e5;
+        color: #1a1a1a;
         margin-left: 0.25rem;
       }
 
@@ -229,31 +230,31 @@ const officialPhrase = computed(() => {
       }
     }
   }
-}
 
-// Suporte ao Modo Claro
-:global(html:not(.dark)) .app-footer {
-  border-top-color: rgba(0, 0, 0, 0.08);
+  // Dark Mode Overrides
+  &.is-dark {
+    border-top-color: rgba(255, 255, 255, 0.08);
 
-  .conversion-block {
-    background: rgba(0, 0, 0, 0.02);
-    border-color: rgba(0, 0, 0, 0.08);
+    .conversion-block {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
 
-    .conversion-text {
-      color: #1a1a1a;
+      .conversion-text {
+        color: #e5e5e5;
+      }
     }
-  }
 
-  .signature-phrase {
-    color: #595959;
-  }
+    .signature-phrase {
+      color: #a6a6a6;
+    }
 
-  .footer-bottom {
-    border-top-color: rgba(0, 0, 0, 0.05);
-    color: #595959;
+    .footer-bottom {
+      border-top-color: rgba(255, 255, 255, 0.05);
+      color: #838587;
 
-    .copyright .author-name {
-      color: #1a1a1a;
+      .copyright .author-name {
+        color: #e5e5e5;
+      }
     }
   }
 }
@@ -264,26 +265,10 @@ const officialPhrase = computed(() => {
   font-size: 13px;
   border-radius: var(--radius-md, 12px) !important;
   transition: all 0.2s ease !important;
-  background: linear-gradient(135deg, hsl(25, 95%, 56%), hsl(25, 95%, 47%)) !important;
-  color: #0a0a0a !important;
-  border: 1px solid hsla(25, 95%, 65%, 0.4) !important;
-  box-shadow: 0 2px 14px -2px hsla(25, 95%, 50%, 0.45);
   padding: 0 18px !important;
   height: 40px !important;
 
-  &:hover {
-    color: #0a0a0a !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px -2px hsla(25, 95%, 50%, 0.65);
-    filter: brightness(1.08);
-  }
-
-  &:active {
-    transform: translateY(0) scale(0.98);
-  }
-}
-
-:global(html:not(.dark)) .solution-button {
+  // Default: Light Mode
   background: linear-gradient(135deg, hsl(25, 95%, 46%), hsl(25, 95%, 39%)) !important;
   color: #ffffff !important;
   border: 1px solid hsla(25, 95%, 55%, 0.3) !important;
@@ -294,6 +279,29 @@ const officialPhrase = computed(() => {
     transform: translateY(-1px);
     box-shadow: 0 4px 16px -2px hsla(25, 95%, 45%, 0.5);
     filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  // Dark Mode
+  &.is-dark {
+    background: linear-gradient(135deg, hsl(25, 95%, 56%), hsl(25, 95%, 47%)) !important;
+    color: #0a0a0a !important;
+    border: 1px solid hsla(25, 95%, 65%, 0.4) !important;
+    box-shadow: 0 2px 14px -2px hsla(25, 95%, 50%, 0.45);
+
+    &:hover {
+      color: #0a0a0a !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px -2px hsla(25, 95%, 50%, 0.65);
+      filter: brightness(1.08);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.98);
+    }
   }
 }
 </style>
