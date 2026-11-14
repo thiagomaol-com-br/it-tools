@@ -4,6 +4,27 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-14] Design System: Rodapé Canônico Global (AppFooter) e Assinatura Institucional
+
+### 1. Contexto
+A aplicação mantinha um rodapé improvisado de duas linhas localizado no final da barra lateral esquerda, abaixo de mais de 470 itens, invisível na maior parte das sessões e grafando a marca em texto plano desprovido do ponto laranja canônico. A área de visualização principal terminava abruptamente sem fechamento visual ou institucional.
+
+### 2. Decisão
+1. **Criação do Componente Global [src/components/AppFooter.vue](src/components/AppFooter.vue):** Integrado ao final da área de conteúdo principal em [src/layouts/base.layout.vue](src/layouts/base.layout.vue), unificando a assinatura da marca com logotipo oficial vetorizado (`32px` desktop / `28px` mobile), frase oficial do ecossistema e créditos éticos de software livre.
+2. **Segmentação Estratégica de Conversão (Opção A):** Exibição do card translúcido de conversão (*"Precisa de uma ferramenta dedicada..."* + botão `[ Solicitar Solução ↗ ]`) exclusivamente na Home (`/`) e no Catálogo (`/ferramentas`), omitindo-o nas ferramentas individuais para não dispersar o uso produtivo.
+3. **Assinatura Minimalista no Menu Lateral ([src/layouts/base.layout.vue](src/layouts/base.layout.vue)):** Compactação do rodapé do sider em linha única técnica (`IT-Tools vX.X.X (SHA) • Thiago Maol.`) com tipografia `Space Grotesk` e o ponto final em laranja quente `#F97415`.
+
+### 3. Justificativa (Por quê)
+* Estruturar o rodapé na área principal oferece um desfecho elegante e institucional para quem navega pelas páginas.
+* A condicional por tipo de rota protege o fluxo técnico das ferramentas contra poluição visual desnecessária, concentrando os esforços de conversão onde há contexto editorial.
+* O ponto final estilizado assegura conformidade estrita com a identidade canônica da marca.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Presença visual de autoridade e fechamento de página em todas as rotas; conversão contextualizada; fidelidade ao Design System 1.0.
+* **Trade-offs:** O scroll vertical das páginas atinge a nova seção de rodapé ao final do conteúdo, adicionando altura final de leitura à área de rolagem.
+
+---
+
 ## [2026-11-14] Design System: Barra Superior com Vidro Vivo Saturado, Sombra 3D e CTA Solarpunk
 
 ### 1. Contexto

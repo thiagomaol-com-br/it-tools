@@ -10,6 +10,7 @@ import BrandLogoGradientDark from '@/brand/logo/logo-gradient-dark.svg?component
 import BrandLogoGradientLight from '@/brand/logo/logo-gradient-light.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
+import AppFooter from '@/components/AppFooter.vue';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
 import { config } from '@/config';
 import { useStyleStore } from '@/stores/style.store';
@@ -80,29 +81,24 @@ const solutionButtonMobileLabel = computed(() => {
         <CollapsibleToolMenu :tools-by-category="tools" />
 
         <div class="footer">
-          <div>
-            IT-Tools
-
+          <div class="footer-sider-line">
+            <span>IT-Tools</span>
             <c-link target="_blank" rel="noopener" :href="`https://github.com/thiagomaol-com-br/it-tools`">
               v{{ version }}
             </c-link>
-
             <template v-if="commitSha && commitSha.length > 0">
-              -
               <c-link
                 target="_blank"
                 rel="noopener"
                 type="primary"
                 :href="`https://github.com/thiagomaol-com-br/it-tools/tree/${commitSha}`"
               >
-                {{ commitSha }}
+                ({{ commitSha }})
               </c-link>
             </template>
-          </div>
-          <div>
-            © {{ new Date().getFullYear() }}
-            <c-link target="_blank" rel="noopener" href="https://thiagomaol.com.br">
-              Thiago Maol
+            <span class="sep">•</span>
+            <c-link target="_blank" rel="noopener" href="https://thiagomaol.com.br" class="author-sider">
+              Thiago Maol<span class="author-dot">.</span>
             </c-link>
           </div>
         </div>
@@ -190,6 +186,7 @@ const solutionButtonMobileLabel = computed(() => {
         <div class="aurora-glow" aria-hidden="true" />
         <div class="page-inner">
           <slot />
+          <AppFooter />
         </div>
       </div>
     </template>
@@ -274,6 +271,31 @@ const solutionButtonMobileLabel = computed(() => {
   color: #838587;
   margin-top: 20px;
   padding: 20px 0;
+  font-size: 11px;
+
+  .footer-sider-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .author-sider {
+    font-family: var(--font-heading), "Space Grotesk", sans-serif;
+    font-weight: 700;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .author-dot {
+    color: #f97415;
+    font-weight: 800;
+  }
+
+  .sep {
+    opacity: 0.4;
+  }
 }
 
 .sider-content {
