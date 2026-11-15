@@ -5,7 +5,6 @@ import LayoutGrid from '~icons/tabler/layout-grid';
 import { NIcon, useThemeVars } from 'naive-ui';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
-import HeroGradient from '../assets/hero-gradient.svg?component';
 import BrandLogoGradientDark from '@/brand/logo/logo-gradient-dark.svg?component';
 import BrandLogoGradientLight from '@/brand/logo/logo-gradient-light.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
@@ -63,8 +62,7 @@ const solutionButtonMobileLabel = computed(() => {
 <template>
   <MenuLayout class="menu-layout" :class="{ isSmallScreen: styleStore.isSmallScreen }">
     <template #sider>
-      <RouterLink to="/" class="hero-wrapper">
-        <HeroGradient class="gradient" />
+      <RouterLink to="/" class="hero-wrapper" :class="{ 'is-dark': styleStore.isDarkTheme }">
         <div class="text-wrapper">
           <div class="title">
             <BrandLogoGradientDark v-if="styleStore.isDarkTheme" class="brand-logo" />
@@ -411,85 +409,79 @@ const solutionButtonMobileLabel = computed(() => {
   top: 0;
   left: 0;
   z-index: 10;
-  height: 125px;
+  height: 112px;
+  width: 100%;
   overflow: hidden;
-  width: inherit;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 16px 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
 
-  .gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
+  // Modo Claro: Fundo claro luminoso com suave aquecimento âmbar
+  background: linear-gradient(180deg, rgba(249, 116, 21, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%), #FFFFFF;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  // Modo Escuro: Fundo escuro integrado ao sider com leve toque térmico
+  &.is-dark {
+    background: linear-gradient(180deg, rgba(249, 116, 21, 0.07) 0%, rgba(23, 23, 23, 0.95) 100%), #171717;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .text-wrapper {
-    position: absolute;
-    left: 0;
     width: 100%;
     text-align: center;
-    top: 16px;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     .title {
-      font-size: 25px;
-      font-weight: 600;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
 
       :deep(svg),
       .brand-logo {
-        width: 170px;
+        width: 155px;
         height: auto;
-        max-width: 80%;
+        max-width: 85%;
         display: block;
         margin: 0 auto;
       }
     }
 
     .divider {
-      width: 44px;
+      width: 32px;
       height: 2px;
       border-radius: 4px;
-      background-color: rgba(249, 116, 21, 0.4);
+      background-color: #f97415;
+      opacity: 0.5;
       margin: 8px auto 6px;
     }
 
     .subtitle {
-      font-size: 15px;
-      font-weight: 500;
-      color: #E5E5E5;
-      letter-spacing: 0.5px;
+      font-family: var(--font-heading), "Space Grotesk", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #595959;
+      transition: color 0.2s ease;
     }
   }
 
-  // Mobile: seamless full-width menu — no green hero gradient, text follows
-  // the theme, and the header scrolls with the menu. Placed after the base
-  // rules above so these override them (same specificity, later source order).
+  &.is-dark .text-wrapper .subtitle {
+    color: #a6a6a6;
+  }
+
+  // Mobile: mesma identidade visual suave e padronizada
   @media (max-width: 700px) {
     position: static;
-    height: auto;
-    // Symmetric spacing above and below the title block (sider-content's
-    // top padding is removed on mobile to keep the bottom gap equal)
-    padding: 24px 0;
-    // The hero is a router link; keep the plain-text look without the gradient
-    text-decoration: none;
-
-    .gradient {
-      display: none;
-    }
-
-    .text-wrapper {
-      position: static;
-      padding-top: 0;
-      color: v-bind('themeVars.textColor1');
-
-      .subtitle {
-        color: v-bind('themeVars.textColor1');
-      }
-    }
+    height: 105px;
+    padding: 18px 0;
   }
 }
 </style>
