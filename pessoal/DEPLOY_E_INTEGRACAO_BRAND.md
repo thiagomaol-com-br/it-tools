@@ -1,7 +1,7 @@
 # Arquitetura de Deploy e Gestão da Marca (Brand)
 
 Este documento reúne duas orientações técnicas independentes para o projeto:
-1. **Parte 1 — Deploy e Execução em Produção:** como funciona a publicação do contêiner, separação entre build/runtime, esteira no GitHub Actions e cotas na conta gratuita.
+1. **Parte 1 — Deploy e Execução em Produção:** como funciona a publicação do contêiner, separação entre build/runtime, esteira no GitHub Actions, estratégia de URLs e gestão via Portainer.
 2. **Parte 2 — Gestão e Integração da Marca (Brand):** a diretriz vigente de autossuficiência dos ativos e o histórico das opções de integração para referência futura.
 
 ---
@@ -58,6 +58,42 @@ O GitHub Actions e o GitHub Container Registry funcionam plenamente em contas gr
 * **Vantagens Práticas:**
   - Preservação estrita do host de desenvolvimento local (2 CPUs).
   - Autenticação direta via `GITHUB_TOKEN` nativo, eliminando a criação de contas no Docker Hub ou configuração manual de tokens externos.
+
+### 1.5. Estratégia de URL: Subdomínio vs. Subpasta
+A escolha da URL da ferramenta no ar envolve aspectos técnicos de isolamento de dados e facilidade de proxy reverso:
+
+| Aspecto | Subdomínio (`ferramentas.thiagomaol.com.br`) | Subpasta (`thiagomaol.com.br/ferramentas`) |
+| :--- | :--- | :--- |
+| **Isolamento de Dados (`localStorage` / Cookies)** | **100% isolado.** As preferências das 470 ferramentas e favoritos ficam restritos ao app, sem risco de colisão com o site principal. | Compartilhado com o domínio raiz `thiagomaol.com.br`. |
+| **Complexidade no Proxy Reverso (Nginx/Traefik)** | **Mínima.** O proxy apenas aponta o subdomínio diretamente para o contêiner (`:8080`). | **Alta.** O proxy precisa separar tráfego do site principal e da subpasta, tratando barras finais (`/ferramentas` vs `/ferramentas/`). |
+| **Configuração no Contêiner** | **Padrão (`BASE_URL=/`).** Funciona imediatamente sem variáveis extras. | Exige configurar `-e BASE_URL=/ferramentas/` e runtime de reescrita no Nginx do contêiner. |
+| **Service Worker & PWA** | Isolamento total do cache offline do navegador. | Risco de conflito caso o site principal também utilize Service Worker / PWA. |
+| **Configuração de DNS** | Exige apontar um registro CNAME ou A para o IP do servidor. | Usa o mesmo registro DNS do site principal. |
+
+* **Recomendação:** **Subdomínio (`ferramentas.thiagomaol.com.br`)**. É a opção mais limpa, estável e que evita atritos de proxy ou conflitos de armazenamento local no navegador.
+
+### 1.6. Deploy e Gestão via Stack no Portainer
+O método de implantação através de uma Stack no Portainer é totalmente recomendado:
+
+1. **Deploy Direto:**  
+   Basta criar uma nova Stack (ex.: `central-ferramentas`), colar o conteúdo do `docker-compose.yml` no Web Editor e acionar **Deploy the stack**:
+   ```yaml
+   services:
+     it-tools:
+       image: ghcr.io/thiagomaol-com-br/it-tools:latest
+       container_name: it-tools
+       pull_policy: always
+       restart: unless-stopped
+       ports:
+         - "8080:8080"
+   ```
+
+2. **Atualização Simples:**  
+   Sempre que a esteira do GitHub Actions gerar uma nova versão da imagem, a atualização no servidor é feita acessando a Stack no Portainer, clicando em **Update the stack** e marcando a opção **Re-pull image**.
+
+3. **Visibilidade do Pacote no GHCR:**
+   - **Pacote Público:** O Portainer baixa a imagem diretamente sem necessidade de credenciais.
+   - **Pacote Privado:** Exige cadastrar o GHCR nas configurações do Portainer (*Registries* > *Add Registry* apontando para `ghcr.io` com o usuário e um Personal Access Token do GitHub). Recomenda-se marcar o pacote como público no GitHub Packages para simplificar o pull no servidor.
 
 ---
 
