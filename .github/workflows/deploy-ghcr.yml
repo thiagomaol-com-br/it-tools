@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - custom-prod
+    paths-ignore:
+      - '**.md'
+      - 'pessoal/**'
+      - '.gitignore'
+      - '.graphifyignore'
   workflow_dispatch:
 
 concurrency:
