@@ -28,9 +28,9 @@ RUN pnpm build \
 # production stage
 FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03 AS production-stage
 
-LABEL maintainer="ShareVB <sharevb@gmail.com>" \
-      org.opencontainers.image.authors="ShareVB <sharevb@gmail.com>"
-LABEL org.opencontainers.image.source=github.com/sharevb/it-tools
+LABEL maintainer="Thiago Maol <thiagomaol@gmail.com>" \
+      org.opencontainers.image.authors="Thiago Maol <thiagomaol@gmail.com>"
+LABEL org.opencontainers.image.source=https://github.com/thiagomaol-com-br/it-tools
 
 ENV VITE_VERCEL_ENV=production
 

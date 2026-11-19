@@ -4,6 +4,28 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-19] CI/CD e Infraestrutura: Esteira Automatizada no GitHub Actions e Publicação no GHCR
+
+### 1. Contexto
+O projeto operava com configurações de CI/CD herdadas do repositório upstream (`sharevb`), as quais monitoravam apenas a branch `chore/all-my-stuffs`, apontavam para registros de terceiros e exigiam credenciais do Docker Hub. Com o desenvolvimento e o rebranding ativos na branch `custom-prod`, não havia esteira configurada para compilar os assets na nuvem e gerar a imagem Docker personalizada (`ghcr.io/thiagomaol-com-br/it-tools:latest`). Em virtude da restrição estrita de 2 CPUs no host local (onde compilações locais congelam o sistema), era mandatório estabelecer uma esteira de compilação e publicação remota no GitHub Actions.
+
+### 2. Decisão
+1. **Criação do Workflow de Deploy ([.github/workflows/deploy-ghcr.yml](.github/workflows/deploy-ghcr.yml)):** Configurado para disparar em `push` na branch `custom-prod` e por acionamento manual (`workflow_dispatch`). Utiliza runner `ubuntu-latest`, suporte multi-arquitetura (`linux/amd64` e `linux/arm64`) via QEMU/Buildx, autenticação nativa com `GITHUB_TOKEN` e cache de camadas GHA.
+2. **Parametrização e Metadados do Contêiner ([Dockerfile](Dockerfile)):** Atualização dos labels de autoria e vinculação oficial da imagem ao repositório via `org.opencontainers.image.source=https://github.com/thiagomaol-com-br/it-tools`, garantindo a exibição do pacote no catálogo de Packages do GitHub.
+3. **Apontamento em Produção ([docker-compose.yml](docker-compose.yml)):** Atualização do serviço para utilizar a imagem `ghcr.io/thiagomaol-com-br/it-tools:latest` com política de pull contínuo.
+4. **Documentação Operacional ([pessoal/DEPLOY_E_INTEGRACAO_BRAND.md](pessoal/DEPLOY_E_INTEGRACAO_BRAND.md)):** Registro do funcionamento da esteira, viabilidade e cotas da conta gratuita do GitHub.
+
+### 3. Justificativa (Por quê)
+* A compilação na nuvem elimina qualquer consumo de CPU/memória no host local, cumprindo com rigor as diretrizes de governança de hardware.
+* O GitHub Container Registry (GHCR) oferece integração nativa com o repositório, sem dependência de serviços externos, chaves manuais ou custos adicionais na conta gratuita do GitHub.
+* A geração automática de tags `latest` e SHA curto permite rastreabilidade e facilidade de rollback caso necessário.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Deploy automatizado a cada push em `custom-prod`; servidor de produção atualizável com um único comando `docker compose pull && docker compose up -d`; imagens multi-arquitetura disponíveis para x86_64 e ARM.
+* **Trade-offs:** O primeiro build no GitHub Actions pode levar alguns minutos a mais para aquecer o cache de camadas do Docker e do pnpm.
+
+---
+
 ## [2026-11-14] Design System: Rodapé Canônico Global (AppFooter) e Assinatura Institucional
 
 ### 1. Contexto

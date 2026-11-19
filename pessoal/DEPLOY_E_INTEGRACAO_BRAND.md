@@ -1,7 +1,7 @@
 # Arquitetura de Deploy e Gestão da Marca (Brand)
 
 Este documento reúne duas orientações técnicas independentes para o projeto:
-1. **Parte 1 — Deploy e Execução em Produção:** como funciona a publicação do contêiner e a separação entre build e runtime.
+1. **Parte 1 — Deploy e Execução em Produção:** como funciona a publicação do contêiner, separação entre build/runtime, esteira no GitHub Actions e cotas na conta gratuita.
 2. **Parte 2 — Gestão e Integração da Marca (Brand):** a diretriz vigente de autossuficiência dos ativos e o histórico das opções de integração para referência futura.
 
 ---
@@ -31,6 +31,33 @@ O IT-Tools é uma aplicação estática (SPA):
 * **Momento de Construção (Build Time):** O Vite processa os componentes Vue, lê as fontes, SVGs e cores, e gera uma pasta chamada `dist/` com arquivos puros e otimizados (HTML, CSS, JS e WebAssembly). Isso roda exclusivamente na esteira de CI/CD (GitHub Actions).
 * **Momento de Execução (Runtime):** O contêiner Docker empacota apenas essa pasta `dist/` pronta dentro de um servidor web ultraleve (Nginx).
 * Quando o contêiner roda no seu servidor, tudo já foi compilado. O servidor apenas entrega os arquivos estáticos ao navegador do usuário.
+
+### 1.3. Como Funciona a Esteira Automática (CI/CD no GitHub Actions)
+Para que o servidor consiga puxar a imagem `ghcr.io/thiagomaol-com-br/it-tools:latest` sem sobrecarregar o host local (2 CPUs), o processo de compilação e publicação é delegado ao GitHub Actions:
+
+1. **Diagnóstico dos Workflows Originais:**
+   - Os arquivos herdados do autor upstream (`sharevb`) em `.github/workflows/` foram desenhados para a branch `chore/all-my-stuffs`, apontam para a conta dele e exigem segredos do Docker Hub.
+   - O projeto atual opera na branch `custom-prod` e publica no GitHub Container Registry (GHCR) da conta `thiagomaol-com-br`.
+2. **Roteiro Operacional em 3 Etapas:**
+   - **Etapa 1 (Workflow Dedicado):** Criação de `.github/workflows/deploy-ghcr.yml` disparado por push na branch `custom-prod` (e `workflow_dispatch` manual). Ele roda em runner Ubuntu da nuvem, compila o `Dockerfile` e publica a imagem no GHCR com permissão nativa `packages: write`.
+   - **Etapa 2 (Push para o GitHub):** Ao realizar o push dos commits de `custom-prod`, o GitHub executa a esteira e gera a imagem automaticamente, sem usar recursos da máquina local.
+   - **Etapa 3 (Atualização no Servidor):** No servidor de produção, basta rodar:
+     ```bash
+     docker compose pull && docker compose up -d
+     ```
+
+### 1.4. Viabilidade e Cotas na Conta Gratuita do GitHub
+O GitHub Actions e o GitHub Container Registry funcionam plenamente em contas gratuitas do GitHub, sem necessidade de cartão de crédito:
+
+* **Em Repositórios Públicos:**
+  - **GitHub Actions:** Minutos de compilação em runners Linux padrão são **100% gratuitos e ilimitados**.
+  - **GHCR (Imagens Docker):** Armazenamento e tráfego de download (*pulls*) para o servidor são totalmente gratuitos e ilimitados.
+* **Em Repositórios Privados:**
+  - **GitHub Actions:** A cota gratuita oferece **2.000 minutos por mês** em Linux. Como a compilação do IT-Tools leva em média de 3 a 5 minutos, a franquia suporta centenas de deploys mensais com folga.
+  - **GHCR (Imagens Docker):** Inclui 500 MB de armazenamento gratuito. Além disso, é possível marcar o pacote da imagem como **Público** nas configurações do GitHub Packages, liberando downloads ilimitados no servidor sem consumir franquia de tráfego.
+* **Vantagens Práticas:**
+  - Preservação estrita do host de desenvolvimento local (2 CPUs).
+  - Autenticação direta via `GITHUB_TOKEN` nativo, eliminando a criação de contas no Docker Hub ou configuração manual de tokens externos.
 
 ---
 
