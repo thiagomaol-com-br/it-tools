@@ -46,6 +46,26 @@ Para que o servidor consiga puxar a imagem `ghcr.io/thiagomaol-com-br/it-tools:l
      docker compose pull && docker compose up -d
      ```
 
+#### 1.3.1. Filtros de Gatilho e Economia de Builds (`paths-ignore`)
+Para evitar que alterações puramente textuais ou administrativas consumam minutos da cota do GitHub Actions e acionem compilações desnecessárias da imagem Docker, o workflow [.github/workflows/deploy-ghcr.yml](.github/workflows/deploy-ghcr.yml) implementa filtros de exclusão de caminhos:
+
+```yaml
+on:
+  push:
+    branches:
+      - custom-prod
+    paths-ignore:
+      - '**.md'
+      - 'pessoal/**'
+      - '.gitignore'
+      - '.graphifyignore'
+  workflow_dispatch:
+```
+
+* **Arquivos e Pastas Ignorados:** Qualquer commit contendo exclusivamente arquivos Markdown (`**.md`, como `README.md`, `DEVLOG.md`), anotações do autor (`pessoal/**`) ou arquivos de controle (`.gitignore`, `.graphifyignore`) **não dispara o build** no GitHub Actions.
+* **Gatilho de Código Real:** A imagem Docker é compilada e publicada automaticamente apenas quando houver alterações em arquivos de código ou configuração da aplicação (como `src/**`, `Dockerfile`, `package.json`, `nginx.conf`, etc.).
+* **Compilação Forçada Sob Demanda:** Caso seja necessário forçar uma nova imagem sem alterar arquivos de código, o botão manual `workflow_dispatch` permanece disponível na aba **Actions** do GitHub.
+
 ### 1.4. Viabilidade e Cotas na Conta Gratuita do GitHub
 O GitHub Actions e o GitHub Container Registry funcionam plenamente em contas gratuitas do GitHub, sem necessidade de cartão de crédito:
 
