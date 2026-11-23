@@ -1,4 +1,8 @@
 /* TEAM */
-Developer: Corentin Thomasset
-Site: https://github.com/sharevb
-Twitter: @sharevb
+Maintainer: Thiago Maol
+Site: https://thiagomaol.com.br
+Contact: thiagomaol@gmail.com
+
+/* THANKS */
+Original Author: Corentin Thomasset
+Project: IT-Tools (GPLv3)

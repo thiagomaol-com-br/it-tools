@@ -194,14 +194,15 @@ export default defineConfig({
       // from the app root -- so the manifest, like the rest of the build, does not need to
       // know where that root is.
       manifest: {
-        name: 'IT Tools',
-        description: 'Aggregated set of useful tools for developers.',
+        name: 'Central de Ferramentas — Thiago Maol',
+        short_name: 'Ferramentas',
+        description: 'Central de ferramentas e utilitários web para produtividade e rotinas digitais.',
         display: 'standalone',
         start_url: './?utm_source=pwa&utm_medium=pwa',
         scope: './',
         orientation: 'any',
-        theme_color: '#18a058',
-        background_color: '#f1f5f9',
+        theme_color: '#0A0A0A',
+        background_color: '#0A0A0A',
         icons: [
           {
             src: './favicon-16x16.png',
@@ -217,12 +218,19 @@ export default defineConfig({
             src: './android-chrome-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+            purpose: 'any',
           },
           {
             src: './android-chrome-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
+          },
+          {
+            src: './android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
       },

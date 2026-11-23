@@ -4,6 +4,30 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-23] PWA e Metadados: Sincronização do Manifesto, Ícones Android e Identidade Thiago Maol
+
+### 1. Contexto
+Ao acessar a central em dispositivos móveis, o prompt nativo de instalação como PWA (Progressive Web App) e os metadados de compartilhamento ainda apresentavam o perfil original do projeto upstream: nome "IT Tools", cor verde herdada (`#18a058`), descrição em inglês e ícones legados de 192px/512px. Embora os favicons principais tivessem sido sincronizados anteriormente, o manifesto e os ícones de tela inicial não haviam sido cobertos.
+
+### 2. Decisão
+1. **Atualização do Manifesto PWA ([vite.config.ts](vite.config.ts)):** Configuração de `name: 'Central de Ferramentas — Thiago Maol'`, `short_name: 'Ferramentas'`, descrição institucional em português, `theme_color: '#0A0A0A'`, `background_color: '#0A0A0A'` e mapeamento dos ícones com propósitos `any` e `maskable`.
+2. **Sincronização de Ativos Visuais ([public/](public/)):** Substituição dos ícones legados ([android-chrome-192x192.png](public/android-chrome-192x192.png), [android-chrome-512x512.png](public/android-chrome-512x512.png), [logo.png](public/logo.png), [logo.svg](public/logo.svg), [safari-pinned-tab.svg](public/safari-pinned-tab.svg) e variações [mstile](public/browserconfig.xml) nos tamanhos 70x70, 144x144, 150x150, 310x150 e 310x310) pelos ativos oficiais da identidade visual Thiago Maol. Adição da imagem institucional de Open Graph ([banner.png](public/banner.png) e [og-image.png](public/og-image.png)).
+3. **Consolidação de Metadados Globais:**
+   * Em [index.html](index.html): apontamento de URL canônica e Open Graph para `https://ferramentas.thiagomaol.com.br/`, remoção de handles legados de Twitter e ajuste do `msapplication-TileColor` para `#0A0A0A`.
+   * Em [public/browserconfig.xml](public/browserconfig.xml): atualização da cor do bloco Microsoft (`TileColor`) para `#0A0A0A`.
+   * Em [public/humans.txt](public/humans.txt): reestruturação da autoria institucional de Thiago Maol mantendo créditos éticos ao autor original sob GPLv3.
+
+### 3. Justificativa (Por quê)
+* Garante consistência visual completa no momento da instalação móvel e no menu de aplicativos do smartphone.
+* O atributo `short_name: 'Ferramentas'` evita truncamento no rótulo da tela inicial do celular.
+* O alinhamento dos metadados de redes sociais e canônicos garante prévias profissionais quando o link for compartilhado.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Experiência de instalação fluida e 100% alinhada à marca em navegadores desktop e móveis; identidade visual uniforme em todos os pontos de contato.
+* **Trade-offs:** Em dispositivos onde o PWA já foi previamente instalado, a atualização visual do ícone na tela inicial depende da expiração de cache do navegador ou de reinstalação do atalho pelo usuário.
+
+---
+
 ## [2026-11-19] CI/CD e Infraestrutura: Esteira Automatizada no GitHub Actions e Publicação no GHCR
 
 ### 1. Contexto
