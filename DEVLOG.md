@@ -4,6 +4,27 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
+## [2026-11-25] PWA e Favicons: Ajuste de Safe Zone Maskable, Fundo Sólido e Respiro Visual
+
+### 1. Contexto
+No teste prático de instalação do PWA em dispositivos móveis Android, o ícone na folha/pop-up de instalação sofria cortes laterais por colisão com a moldura nativa do sistema operacional, e o atalho na tela inicial apresentava o monograma branco invisível sobre o fundo branco injetado pelo launcher em ícones transparentes. Adicionalmente, os favicons exibidos em abas e na barra de janelas instaladas operavam com espaçamento excessivamente colado às bordas.
+
+### 2. Decisão
+1. **Fundo Sólido Institucional (#0A0A0A) em Ativos PWA:** Preenchimento de [android-chrome-512x512.png](public/android-chrome-512x512.png), [android-chrome-192x192.png](public/android-chrome-192x192.png), [apple-touch-icon.png](public/apple-touch-icon.png) e fallbacks `mstile-*` com fundo preto sólido (`#0A0A0A`), eliminando a incidência de branco sobre branco em qualquer launcher móvel ou desktop.
+2. **Dimensionamento com Safe Zone Maskable (Respiro de ~50%):** Redução proporcional do monograma central para ~52% do canvas (largura de 264px em 512x512), assegurando distância mínima de ~30px do raio de corte seguro (círculo de 80% / raio de 204.8px) da especificação W3C Maskable Icons.
+3. **Respiro no Favicon Vetorial ([public/favicon.svg](public/favicon.svg)):** Expansão do `viewBox` para `"-2 -2 28 28"`, reduzindo o monograma em ~15% em relação ao container e evitando sensação de compressão contra as abas do navegador e cabeçalhos de janelas PWA instaladas. Atualização dos fallbacks estáticos ([favicon-32x32.png](public/favicon-32x32.png), [favicon-16x16.png](public/favicon-16x16.png) e [favicon.ico](public/favicon.ico)).
+
+### 3. Justificativa (Por quê)
+* Atende com rigor à especificação W3C de ícones adaptativos do Android, impedindo que molduras circulares ou quadriláteras recortem qualquer vértice do símbolo.
+* O fundo sólido `#0A0A0A` preserva o contraste de alto padrão com o monograma branco e o ponto laranja da marca em qualquer sistema operacional, independentemente do tema do launcher.
+* O respiro adicional confere harmonia e legibilidade refinada ao favicon em escalas pequenas.
+
+### 4. Consequências / Trade-offs
+* **Consequências Positivas:** Apresentação impecável e sem cortes tanto na folha de instalação quanto na grade de aplicativos móveis; visual consistente e alinhado aos tokens institucionais.
+* **Trade-offs:** Usuários que já adicionaram o atalho à tela inicial anteriormente precisam reinstalar o app ou limpar o cache do navegador móvel para que o launcher substitua a versão em cache.
+
+---
+
 ## [2026-11-23] PWA e Metadados: Sincronização do Manifesto, Ícones Android e Identidade Thiago Maol
 
 ### 1. Contexto
