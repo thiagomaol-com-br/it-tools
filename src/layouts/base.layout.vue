@@ -371,19 +371,19 @@ const solutionButtonMobileLabel = computed(() => {
   }
 }
 
-// Sticky Navbar com Glassmorphism e Sombra 3D (Design System 1.0)
+// Sticky Navbar com a Fórmula Canônica do Vidro Vivo (Design System 1.0)
 .navbar {
   position: sticky;
   top: 0;
   z-index: 100;
   transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
-  // Default: Modo Claro (Light Mode) - Fundo claro e sombra suave difusa
-  background: rgba(248, 250, 252, 0.88);
-  backdrop-filter: blur(16px) saturate(180%);
+  // Default: Modo Claro (Light Mode) - Fundo translúcido saturado com desfoque e sombra suave
+  background: rgba(255, 255, 255, 0.65);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
 
   margin: -26px -26px 20px;
   padding: 10px 26px;
@@ -393,11 +393,11 @@ const solutionButtonMobileLabel = computed(() => {
     padding: 10px 8px;
   }
 
-  // Override: Modo Escuro (Dark Mode) - Vidro escuro e sombra 3D de alta oclusão
+  // Override: Modo Escuro (Dark Mode) - Vidro Vivo escuro com desfoque e sombra 3D de alta oclusão
   &.is-dark {
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(16px) saturate(160%);
+    background: rgba(0, 0, 0, 0.25);
     -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
   }

@@ -365,6 +365,8 @@ export default defineConfig({
     ], // optionally specify dependency name
   },
   server: {
+    host: true,
+    port: 5173,
     watch: {
       ignored: [
         '**/.pnpm-store/**',
@@ -375,9 +377,9 @@ export default defineConfig({
       ],
     },
     headers: {
-      //   'Cross-Origin-Resource-Policy': 'same-site',
+      'Cross-Origin-Resource-Policy': 'cross-origin',
       'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Embedder-Policy': 'credentialless',
     },
   },
 });

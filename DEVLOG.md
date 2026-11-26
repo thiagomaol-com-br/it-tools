@@ -4,23 +4,26 @@ Registro de decisões arquiteturais estruturantes, mudanças conceituais e novos
 
 ---
 
-## [2026-11-25] PWA e Favicons: Ajuste de Safe Zone Maskable, Fundo Sólido e Respiro Visual
+## [2026-11-25] PWA, Favicons e Navbar: Safe Zone Maskable, Fundo Sólido e Oclusão Total da Barra Superior
 
 ### 1. Contexto
-No teste prático de instalação do PWA em dispositivos móveis Android, o ícone na folha/pop-up de instalação sofria cortes laterais por colisão com a moldura nativa do sistema operacional, e o atalho na tela inicial apresentava o monograma branco invisível sobre o fundo branco injetado pelo launcher em ícones transparentes. Adicionalmente, os favicons exibidos em abas e na barra de janelas instaladas operavam com espaçamento excessivamente colado às bordas.
+No teste prático de instalação do PWA em dispositivos móveis Android, o ícone na folha/pop-up de instalação sofria cortes laterais por colisão com a moldura nativa do sistema operacional, e o atalho na tela inicial apresentava o monograma branco invisível sobre o fundo branco injetado pelo launcher em ícones transparentes. Adicionalmente, os favicons exibidos em abas e na barra de janelas instaladas operavam com espaçamento excessivamente colado às bordas, e a barra de navegação superior (navbar) mantinha transparência excessiva (25% no modo escuro e 12% no modo claro), permitindo a leitura desconfortável de textos que passavam por baixo dela durante a rolagem no desktop e no celular.
 
 ### 2. Decisão
 1. **Fundo Sólido Institucional (#0A0A0A) em Ativos PWA:** Preenchimento de [android-chrome-512x512.png](public/android-chrome-512x512.png), [android-chrome-192x192.png](public/android-chrome-192x192.png), [apple-touch-icon.png](public/apple-touch-icon.png) e fallbacks `mstile-*` com fundo preto sólido (`#0A0A0A`), eliminando a incidência de branco sobre branco em qualquer launcher móvel ou desktop.
 2. **Dimensionamento com Safe Zone Maskable (Respiro de ~50%):** Redução proporcional do monograma central para ~52% do canvas (largura de 264px em 512x512), assegurando distância mínima de ~30px do raio de corte seguro (círculo de 80% / raio de 204.8px) da especificação W3C Maskable Icons.
 3. **Respiro no Favicon Vetorial ([public/favicon.svg](public/favicon.svg)):** Expansão do `viewBox` para `"-2 -2 28 28"`, reduzindo o monograma em ~15% em relação ao container e evitando sensação de compressão contra as abas do navegador e cabeçalhos de janelas PWA instaladas. Atualização dos fallbacks estáticos ([favicon-32x32.png](public/favicon-32x32.png), [favicon-16x16.png](public/favicon-16x16.png) e [favicon.ico](public/favicon.ico)).
+4. **Fórmula Canônica do Vidro Vivo na Navbar ([src/layouts/base.layout.vue](src/layouts/base.layout.vue)):** Alinhamento estrito às diretrizes do Design System 1.0 documentadas em `hub/site` (`DEVLOG.md` [2026-11-19]). Aplicação de `rgba(0, 0, 0, 0.25)` com desfoque de 16px e saturação a 160% no modo escuro, e `rgba(255, 255, 255, 0.65)` com saturação a 180% no modo claro, com sombras de oclusão 3D (`box-shadow`). Correção crítica da ordem de declaração no CSS (`-webkit-backdrop-filter` declarado antes de `backdrop-filter`), impedindo que o minificador suprima a regra padrão no Chromium/Android/Windows e garantindo o desfoque espesso que impede a leitura de textos que passam por baixo.
+5. **Acesso em Rede Local no Servidor Dev ([vite.config.ts](vite.config.ts)):** Ativação de `server.host: true` e fixação da porta `5173`, adicionando `Cross-Origin-Resource-Policy: 'cross-origin'` e transicionando COEP para `credentialless`, viabilizando o preview imediato pelo celular na rede Wi-Fi sem bloqueio de carregamento de módulos.
 
 ### 3. Justificativa (Por quê)
 * Atende com rigor à especificação W3C de ícones adaptativos do Android, impedindo que molduras circulares ou quadriláteras recortem qualquer vértice do símbolo.
 * O fundo sólido `#0A0A0A` preserva o contraste de alto padrão com o monograma branco e o ponto laranja da marca em qualquer sistema operacional, independentemente do tema do launcher.
 * O respiro adicional confere harmonia e legibilidade refinada ao favicon em escalas pequenas.
+* A barra superior opaca elimina poluição visual e garante legibilidade imediata das ações ("Home", "Menu", "Ferramentas", busca e CTA) durante toda a experiência de navegação.
 
 ### 4. Consequências / Trade-offs
-* **Consequências Positivas:** Apresentação impecável e sem cortes tanto na folha de instalação quanto na grade de aplicativos móveis; visual consistente e alinhado aos tokens institucionais.
+* **Consequências Positivas:** Apresentação impecável e sem cortes tanto na folha de instalação quanto na grade de aplicativos móveis; leitura limpa e sem interferência visual na navbar em qualquer dispositivo.
 * **Trade-offs:** Usuários que já adicionaram o atalho à tela inicial anteriormente precisam reinstalar o app ou limpar o cache do navegador móvel para que o launcher substitua a versão em cache.
 
 ---
